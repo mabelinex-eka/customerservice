@@ -2,7 +2,7 @@
 
 An internal tool for uParcel's Singapore customer service and fulfilment team. Agents describe a situation in plain words and get the exact SOP steps, a reply they can send, and who to escalate to.
 
-The live app is a claude.ai artifact; its knowledge base lives in the artifact's database. This repo keeps the page source, a copy of the knowledge base, and the scripts that built it.
+There are two versions: a claude.ai artifact (knowledge base in the artifact's database, refreshed daily) and a standalone Next.js web app in `frontend/` that reads `knowledge-base/knowledge_base.json`. This repo also keeps the scripts that built the knowledge base.
 
 ## What's in the app
 
@@ -17,7 +17,8 @@ The live app is a claude.ai artifact; its knowledge base lives in the artifact's
 
 | Path | Contents |
 |---|---|
-| `app/index.html` | Page source as published (the artifact adds the HTML skeleton at publish time). |
+| `frontend/` | Standalone Next.js web app (deploy on Vercel). See `frontend/README.md`. |
+| `app/index.html` | Page source of the claude.ai artifact version (the artifact adds the HTML skeleton at publish time). |
 | `knowledge-base/knowledge_base.json` | All collections in one file: `sop`, `playbooks`, `checklist`, `quiz`, `meta`. |
 | `knowledge-base/seed/<collection>/<id>.json` | One file per database document, as seeded. |
 | `scripts/build_seed.py` | Builds the entries taken from the *Operations Master SOP 2026*. |

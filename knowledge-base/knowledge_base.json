@@ -1828,11 +1828,14 @@
  ],
  "meta": [
   {
-   "lastRefreshed": "2026-11-11T12:00:00+08:00",
+   "lastRefreshed": "2026-11-11T16:30:00+08:00",
    "sources": [
-    "Operations Master SOP 2026"
+    "Operations Master SOP 2026",
+    "uparcel.sg FAQ",
+    "uparcel.sg/rates",
+    "uparcel.sg Terms & Conditions"
    ],
-   "note": "Built from WorkDrive SOPs. Price amendments not yet covered."
+   "note": "Added 17 entries from the website FAQ, rates and T&C; 4 marked for review where the website and internal SOP disagree."
   }
  ]
 }
