@@ -1,0 +1,1 @@
+{"id": "q06", "q": "A low-priority customer asks for a faster pickup. What do you offer?", "opts": ["$8 top-up", "Outsource to Lalamove", "Suggest adding a tip or rebooking", "Upgrade to 1-hr rush for free"], "ans": 2, "ref": "req-faster", "order": 5}

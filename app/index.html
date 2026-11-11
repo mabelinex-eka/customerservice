@@ -1,0 +1,555 @@
+<title>uParcel CS Answer Desk</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sticky header + tab rail, single working column (max 920px) — an ops desk tool, scanned not read */
+:root{
+  --bg:#f3f5f8; --surface:#ffffff; --surface-2:#eaeef4; --line:#d6dce6;
+  --fg:#18212f; --muted:#5a6678; --accent:#1d4ed8; --accent-ink:#ffffff; --accent-soft:#e3ebff;
+  --ok:#137a43; --ok-soft:#e1f4e9; --warn:#a85d00; --warn-soft:#fdf0dc; --bad:#b42318; --bad-soft:#fde6e3;
+  --font-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f141c; --surface:#171e29; --surface-2:#1f2836; --line:#2c3748;
+  --fg:#e6ebf2; --muted:#9aa6b8; --accent:#7aa2ff; --accent-ink:#0b1220; --accent-soft:#1c2a4a;
+  --ok:#5fd394; --ok-soft:#14301f; --warn:#f2b45a; --warn-soft:#352612; --bad:#ff8a7a; --bad-soft:#3a1915; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f141c; --surface:#171e29; --surface-2:#1f2836; --line:#2c3748;
+  --fg:#e6ebf2; --muted:#9aa6b8; --accent:#7aa2ff; --accent-ink:#0b1220; --accent-soft:#1c2a4a;
+  --ok:#5fd394; --ok-soft:#14301f; --warn:#f2b45a; --warn-soft:#352612; --bad:#ff8a7a; --bad-soft:#3a1915; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:15px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:920px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px 8px;flex-wrap:wrap}
+.brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.brand h1{font-size:18px;margin:0;font-weight:700;letter-spacing:-.01em}
+.brand .sub{font-size:12px;color:var(--muted)}
+.stat{font-family:var(--font-mono);font-size:12px;color:var(--muted);display:flex;gap:12px;flex-wrap:wrap}
+.stat b{color:var(--fg);font-weight:500}
+nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{flex:none;padding:9px 12px;font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent}
+nav a[aria-current="page"]{color:var(--accent);border-bottom-color:var(--accent)}
+nav a:hover{color:var(--fg)}
+nav a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+main{padding-block:20px 60px}
+section[data-view]{display:grid;gap:16px}
+h2{font-size:20px;margin:0;text-wrap:balance}
+h3{font-size:15px;margin:0}
+.lede{color:var(--muted);margin:0;max-width:65ch}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:12px;min-width:0}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+textarea,input[type=text],input[type=search],select{width:100%;font:inherit;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+textarea{resize:vertical;min-height:84px}
+label.lbl{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:8px 14px;font-weight:500}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+button.ghost{background:transparent;border-color:transparent;color:var(--accent);padding:6px 8px}
+button:disabled{opacity:.55;cursor:default}
+.chip{font-size:13px;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:999px}
+.b-ok{background:var(--ok-soft);color:var(--ok)} .b-warn{background:var(--warn-soft);color:var(--warn)} .b-bad{background:var(--bad-soft);color:var(--bad)} .b-info{background:var(--accent-soft);color:var(--accent)}
+.muted{color:var(--muted)} .small{font-size:13px}
+.mono{font-family:var(--font-mono);font-size:12.5px}
+ol.steps,ul.steps{margin:0;padding-left:20px;display:grid;gap:6px}
+.reply{white-space:pre-wrap;background:var(--surface-2);border-radius:8px;padding:12px;font-size:14.5px}
+.esc{border-left:3px solid var(--warn);background:var(--warn-soft);padding:10px 12px;border-radius:0 8px 8px 0}
+.gap{border-left:3px solid var(--bad);background:var(--bad-soft);padding:10px 12px;border-radius:0 8px 8px 0}
+.refs{display:flex;gap:6px;flex-wrap:wrap}
+.refs button{font-size:12.5px;padding:3px 9px;border-radius:999px;background:var(--surface-2);border-color:transparent}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:640px){.split{grid-template-columns:1fr}}
+details.sop{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+details.sop>summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;gap:10px;align-items:baseline;justify-content:space-between}
+details.sop>summary::-webkit-details-marker{display:none}
+details.sop .bodyx{padding:0 14px 14px;display:grid;gap:10px}
+details.sop[open]>summary{border-bottom:1px solid var(--line);margin-bottom:10px}
+.catlabel{font-size:12px;color:var(--muted)}
+.pbgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.pbcard{text-align:left;display:grid;gap:4px;padding:14px;border-radius:var(--r)}
+.pbcard:hover{border-color:var(--accent)}
+.crumbs{font-size:13px;color:var(--muted)}
+.opts{display:grid;gap:8px}
+.opts button{text-align:left;padding:12px 14px}
+.opts button:hover{border-color:var(--accent);background:var(--accent-soft)}
+.check{display:grid;grid-template-columns:auto 128px 1fr;gap:10px;align-items:start;padding:10px 0;border-top:1px solid var(--line)}
+.check:first-child{border-top:0}
+.check input{width:18px;height:18px;margin-top:2px;accent-color:var(--accent)}
+.check .t{font-family:var(--font-mono);font-size:12.5px;color:var(--muted);padding-top:1px}
+.check.done .x{color:var(--muted);text-decoration:line-through}
+@media (max-width:520px){.check{grid-template-columns:auto 1fr}.check .t{grid-column:2}.check .x{grid-column:2}}
+.bar{height:6px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.qopt{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-radius:8px;border:1px solid var(--line);cursor:pointer}
+.qopt input{margin-top:3px;accent-color:var(--accent)}
+.qopt.right{border-color:var(--ok);background:var(--ok-soft)} .qopt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.notice{padding:12px 14px;border-radius:8px;background:var(--surface-2);color:var(--muted);font-size:14px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:14px;z-index:20}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+.tablewrap{overflow-x:auto}
+.thinking{display:flex;gap:8px;align-items:center;color:var(--muted)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:p 1s infinite alternate}
+@keyframes p{from{opacity:.25}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.dot{animation:none}.bar>i{transition:none}}
+</style>
+
+<header>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand"><h1>uParcel CS Answer Desk</h1><span class="sub">Singapore · answers from the Operations SOP and uparcel.sg</span></div>
+      <div class="stat" id="stat"><span>Loading SOP library…</span></div>
+    </div>
+    <nav id="tabs" aria-label="Sections">
+      <a href="#ask">Ask</a>
+      <a href="#playbooks">Playbooks</a>
+      <a href="#library">SOP library</a>
+      <a href="#checker">Reply checker</a>
+      <a href="#checklist">Shift checklist</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#review" id="reviewTab" hidden>Review</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ASK -->
+<section data-view="ask">
+  <div>
+    <h2>What are you unsure about?</h2>
+    <p class="lede">Describe the situation in plain words. You'll get the SOP steps, a reply you can send, and who to escalate to.</p>
+  </div>
+  <div class="card">
+    <label class="lbl" for="askInput">Your question</label>
+    <textarea id="askInput" placeholder="e.g. Shopee cake order still not accepted at 11.30am, what do I do?"></textarea>
+    <div class="row" id="examples">
+      <button class="chip" type="button">TikTok job still pending at 5pm</button>
+      <button class="chip" type="button">Customer says cake arrived smashed</button>
+      <button class="chip" type="button">Driver not answering, pickup window ending</button>
+      <button class="chip" type="button">Recipient not home for a medical delivery</button>
+      <button class="chip" type="button">Seller closed when driver arrived — can we charge?</button>
+    </div>
+    <div class="row"><button class="primary" id="askBtn" type="button">Get the SOP answer</button><span class="small muted" id="askHint"></span></div>
+  </div>
+  <div id="askOut"></div>
+</section>
+
+<!-- PLAYBOOKS -->
+<section data-view="playbooks" hidden>
+  <div>
+    <h2>Playbooks</h2>
+    <p class="lede">Step-by-step for the situations that go wrong most: jobs not accepted, late agents, late or failed deliveries, claims.</p>
+  </div>
+  <div id="pbOut"></div>
+</section>
+
+<!-- LIBRARY -->
+<section data-view="library" hidden>
+  <div>
+    <h2>SOP library</h2>
+    <p class="lede">Every rule the Answer Desk uses. Search it, or report anything wrong or outdated.</p>
+  </div>
+  <input type="search" id="libSearch" placeholder="Search: top-up, claim, PUIP, Lalamove, SGH…">
+  <div class="row" id="libCats"></div>
+  <div id="libOut" style="display:grid;gap:8px"></div>
+</section>
+
+<!-- CHECKER -->
+<section data-view="checker" hidden>
+  <div>
+    <h2>Reply checker</h2>
+    <p class="lede">Paste your draft before you send it. It checks the reply against the SOP and suggests a complete version.</p>
+  </div>
+  <div class="card">
+    <div class="split">
+      <div style="display:grid;gap:6px;min-width:0"><label class="lbl" for="chkCust">Customer's message (optional)</label><textarea id="chkCust" placeholder="Paste what the customer wrote"></textarea></div>
+      <div style="display:grid;gap:6px;min-width:0"><label class="lbl" for="chkDraft">Your draft reply</label><textarea id="chkDraft" placeholder="Paste your reply"></textarea></div>
+    </div>
+    <div class="row"><button class="primary" id="chkBtn" type="button">Check my reply</button></div>
+  </div>
+  <div id="chkOut"></div>
+</section>
+
+<!-- CHECKLIST -->
+<section data-view="checklist" hidden>
+  <div>
+    <h2>Shift checklist</h2>
+    <p class="lede">Tick each check as you do it. Your ticks are saved for today so your lead can see what was covered.</p>
+  </div>
+  <div class="row" id="clPick"></div>
+  <div id="clOut"></div>
+</section>
+
+<!-- QUIZ -->
+<section data-view="quiz" hidden>
+  <div>
+    <h2>SOP quiz</h2>
+    <p class="lede">Questions taken from real situations in the SOP. Pass mark is 80%, same as the Support Quiz.</p>
+  </div>
+  <div id="quizOut"></div>
+</section>
+
+<!-- REVIEW -->
+<section data-view="review" hidden>
+  <div>
+    <h2>Review</h2>
+    <p class="lede">For team leads: answers agents flagged, suggested Q&amp;As, and quiz results.</p>
+  </div>
+  <div id="revOut"></div>
+</section>
+</main>
+
+<script>
+(() => {
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const today = () => new Date().toLocaleDateString("en-CA", {timeZone: "Asia/Singapore"});
+function toast(msg){ const t=document.createElement("div"); t.className="toast"; t.textContent=msg; document.body.appendChild(t); setTimeout(()=>t.remove(),2200); }
+
+const S = { sop: [], playbooks: [], checklist: [], quiz: [], meta: null, feedback: [], results: [], loaded: false };
+let db = null, sample = null, user = null, uid = null, canEdit = false;
+
+/* ---------- routing ---------- */
+const VIEWS = ["ask","playbooks","library","checker","checklist","quiz","review"];
+function route(){
+  let v = (location.hash || "#ask").slice(1);
+  if (!VIEWS.includes(v) || (v === "review" && !canEdit)) v = "ask";
+  document.querySelectorAll("section[data-view]").forEach(s => s.hidden = s.dataset.view !== v);
+  document.querySelectorAll("#tabs a").forEach(a => { if (a.getAttribute("href") === "#" + v) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
+  if (v === "review") renderReview();
+}
+addEventListener("hashchange", route);
+
+/* ---------- KB helpers ---------- */
+const STATUS = { verified:["b-ok","SOP"], draft:["b-warn","Draft"], gap:["b-bad","Not in SOP yet"], needs_review:["b-warn","Needs review"], outdated:["b-bad","Outdated"] };
+const badge = st => { const [c,l] = STATUS[st] || STATUS.verified; return `<span class="badge ${c}">${l}</span>`; };
+const byId = id => S.sop.find(s => s.id === id);
+function words(t){ return (t||"").toLowerCase().replace(/[^a-z0-9$%\.\s-]/g," ").split(/\s+/).filter(w => w.length > 2); }
+function score(entry, q){
+  const hay = (entry.title + " " + entry.keywords + " " + entry.cat + " " + (entry.body||[]).join(" ")).toLowerCase();
+  return words(q).reduce((n,w) => n + (hay.includes(w) ? (entry.keywords.toLowerCase().includes(w) || entry.title.toLowerCase().includes(w) ? 3 : 1) : 0), 0);
+}
+function search(q, n = 4){ return S.sop.map(e => [score(e,q),e]).filter(x => x[0] > 0).sort((a,b)=>b[0]-a[0]).slice(0,n).map(x=>x[1]); }
+function kbText(){
+  return S.sop.map(e => `[${e.id}] ${e.title} (${e.cat}; source: ${e.source}; status: ${e.status})\n` + (e.body||[]).map(l => "- " + l).join("\n") + (e.escalate ? `\nEscalate: ${e.escalate}` : "")).join("\n\n");
+}
+function refButtons(ids){
+  return `<div class="refs">${(ids||[]).filter(byId).map(id => `<button type="button" data-ref="${esc(id)}">${esc(byId(id).title)}</button>`).join("")}</div>`;
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-ref]"); if (!b) return;
+  openSop(b.dataset.ref);
+});
+function openSop(id){
+  location.hash = "#library"; $("#libSearch").value = ""; libCat = "All"; renderLibrary();
+  requestAnimationFrame(() => { const d = document.getElementById("sop-" + id); if (d){ d.open = true; d.scrollIntoView({block:"start", behavior:"smooth"}); } });
+}
+async function copyText(text, el){
+  try { await navigator.clipboard.writeText(text); toast("Copied"); }
+  catch { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); toast("Selected — press Ctrl+C to copy"); }
+}
+
+/* ---------- header stats ---------- */
+function renderStat(){
+  if (!S.loaded) return;
+  const gaps = S.sop.filter(s => s.status !== "verified").length;
+  const open = S.feedback.filter(f => f.status === "open").length;
+  const ref = S.meta?.lastRefreshed ? new Date(S.meta.lastRefreshed).toLocaleString("en-SG",{day:"numeric",month:"short",hour:"numeric",minute:"2-digit",timeZone:"Asia/Singapore"}) : "—";
+  $("#stat").innerHTML = `<span><b>${S.sop.length}</b> SOP entries</span><span>Refreshed <b>${esc(ref)}</b></span>` + (gaps ? `<span><b>${gaps}</b> gaps / drafts</span>` : "") + (canEdit && open ? `<span><b>${open}</b> flags to review</span>` : "");
+}
+
+/* ---------- ASK ---------- */
+$("#examples").addEventListener("click", e => { const c = e.target.closest(".chip"); if (!c) return; $("#askInput").value = c.textContent; ask(); });
+$("#askBtn").addEventListener("click", ask);
+$("#askInput").addEventListener("keydown", e => { if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) ask(); });
+let askCtl = null;
+async function ask(){
+  const q = $("#askInput").value.trim(); if (!q) { $("#askInput").focus(); return; }
+  if (!S.loaded) { $("#askOut").innerHTML = `<div class="notice">The SOP library is still loading. Try again in a moment.</div>`; return; }
+  const related = search(q, 4);
+  const relHtml = related.length ? `<div class="card"><h3>Related SOP entries</h3>${refButtons(related.map(r=>r.id))}</div>` : "";
+  if (!sample) {
+    $("#askOut").innerHTML = (related.length ? `<div class="notice">Claude isn't available in this view, so here are the closest SOP entries.</div>` : `<div class="gap">No matching SOP entry. Ask your lead before replying.</div>`) + relHtml;
+    return;
+  }
+  askCtl?.abort(); askCtl = new AbortController();
+  $("#askBtn").disabled = true;
+  $("#askOut").innerHTML = `<div class="card"><div class="thinking"><span class="dot"></span>Checking the SOP…</div></div>` + relHtml;
+  const prompt = `You are the SOP assistant for uParcel's Singapore customer service and fulfilment team (courier and same-day delivery).
+Answer the agent's question using ONLY the SOP entries below. Do not invent prices, amounts, times, names or rules that are not in the entries.
+If the entries don't cover the question, set "covered" to false, say what's missing in "gap_note", and tell the agent to escalate to Carmen (Support lead) before replying.
+If an entry you rely on has status "draft", "gap" or "needs_review", say so in "gap_note" (include its Escalate note) and lower the confidence.
+Entries with source "uparcel.sg" are the public website: use them for what customers are told (prices, surcharges, cancellation, insurance, payments). Entries from the Operations SOP govern internal handling. Where the two differ, follow the SOP for internal steps, quote the website for customer-facing numbers, and point out the difference in "gap_note".
+Write in clear, plain Singapore business English. Keep steps short and actionable, in order.
+"customer_reply": a complete, polite message the agent can send to the customer (start "Hi {name}," and end "Regards, uParcel Customer Service"). Use placeholders like {tracking no.} or {time} for details you don't know. Never include internal notes, agent pay, penalties, team member names or internal file names in the customer reply. If no customer message is needed (purely internal task), set it to "".
+
+Return JSON only:
+{"covered": true|false, "answer": "1–2 sentence direct answer", "steps": ["..."], "customer_reply": "...", "escalate": "who and when, or ''", "refs": ["sop ids used"], "confidence": "high"|"medium"|"low", "gap_note": "..."}
+
+SOP ENTRIES:
+${kbText()}
+
+AGENT'S QUESTION:
+${q}`;
+  try {
+    const r = await sample.json(prompt, { signal: askCtl.signal, modelTier: "default" });
+    renderAnswer(q, r, relHtml);
+  } catch (e) {
+    if (e?.code === "cancelled") return;
+    const msg = e?.code === "rate_limited" ? "Too many questions at once — wait a minute and try again." : e?.code === "not_granted" ? "Claude access was declined for this page." : "Couldn't get an answer just now.";
+    $("#askOut").innerHTML = `<div class="notice">${msg} The closest SOP entries are below.</div>` + relHtml;
+  } finally { $("#askBtn").disabled = false; }
+}
+function renderAnswer(q, r, relHtml){
+  const conf = {high:["b-ok","High confidence"], medium:["b-warn","Medium confidence"], low:["b-bad","Low confidence"]}[r.confidence] || ["b-warn","Check"];
+  const refs = (r.refs||[]).filter(byId);
+  const html = `<div class="card" id="ansCard">
+    <div class="row" style="justify-content:space-between"><h3>Answer</h3><span class="badge ${conf[0]}">${conf[1]}</span></div>
+    ${r.covered === false ? `<div class="gap"><b>Not confirmed in the SOP.</b> ${esc(r.gap_note || "Escalate to Carmen before replying.")}</div>` : (r.gap_note ? `<div class="gap">${esc(r.gap_note)}</div>` : "")}
+    <p style="margin:0">${esc(r.answer)}</p>
+    ${(r.steps||[]).length ? `<div><div class="lbl" style="margin-bottom:6px">What to do</div><ol class="steps">${r.steps.map(s=>`<li>${esc(s)}</li>`).join("")}</ol></div>` : ""}
+    ${r.escalate ? `<div class="esc"><b>Escalate:</b> ${esc(r.escalate)}</div>` : ""}
+    ${r.customer_reply ? `<div style="display:grid;gap:6px"><div class="row" style="justify-content:space-between"><span class="lbl">Reply to customer</span><button type="button" id="copyReply">Copy reply</button></div><div class="reply" id="replyText">${esc(r.customer_reply)}</div></div>` : ""}
+    ${refs.length ? `<div><div class="lbl" style="margin-bottom:6px">From the SOP</div>${refButtons(refs)}</div>` : ""}
+    <div class="row" style="border-top:1px solid var(--line);padding-top:10px">
+      <span class="small muted">Was this right?</span>
+      <button type="button" id="fbUp">Yes, correct</button>
+      <button type="button" id="fbDown">Wrong or outdated</button>
+    </div>
+    <div id="fbBox" hidden style="display:grid;gap:8px">
+      <label class="lbl" for="fbText">What's wrong, and what should it say?</label>
+      <textarea id="fbText"></textarea>
+      <div class="row"><button class="primary" type="button" id="fbSend">Send to team lead</button></div>
+    </div>
+  </div>` + relHtml;
+  $("#askOut").innerHTML = html;
+  $("#copyReply")?.addEventListener("click", () => copyText(r.customer_reply, $("#replyText")));
+  $("#fbUp").addEventListener("click", () => sendFeedback({kind:"up", question:q, answer:r.answer, refs}).then(ok => ok && toast("Thanks — noted")));
+  $("#fbDown").addEventListener("click", () => { $("#fbBox").hidden = false; $("#fbText").focus(); });
+  $("#fbSend").addEventListener("click", async () => {
+    const ok = await sendFeedback({kind:"down", question:q, answer:r.answer, steps:r.steps||[], refs, comment:$("#fbText").value.trim()});
+    if (ok){ $("#fbBox").hidden = true; toast("Sent to your team lead"); }
+  });
+}
+async function sendFeedback(f){
+  if (!db) { toast("Sign in to send feedback"); return false; }
+  try { await db.collection("feedback").add({...f, uid: uid || null, status: f.kind === "up" ? "closed" : "open", at: new Date().toISOString()}); return true; }
+  catch(e){ toast(e?.code === "not_granted" ? "You need 'can use' access to send feedback" : "Couldn't send — try again"); return false; }
+}
+
+/* ---------- PLAYBOOKS ---------- */
+let pb = null, pbPath = [];
+function renderPlaybooks(){
+  const out = $("#pbOut");
+  if (!S.loaded) { out.innerHTML = `<div class="notice">Loading playbooks…</div>`; return; }
+  if (!pb){
+    out.innerHTML = `<div class="pbgrid">${S.playbooks.map(p => `<button type="button" class="card pbcard" data-pb="${esc(p.id)}"><h3>${esc(p.title)}</h3><span class="small muted">${esc(p.summary)}</span></button>`).join("")}</div>`;
+    out.querySelectorAll("[data-pb]").forEach(b => b.addEventListener("click", () => { pb = S.playbooks.find(p => p.id === b.dataset.pb); pbPath = [pb.start]; renderPlaybooks(); }));
+    return;
+  }
+  const node = pb.nodes[pbPath[pbPath.length-1]];
+  const crumbs = pbPath.slice(0,-1).map((id,i) => { const n = pb.nodes[id]; const next = pbPath[i+1]; const o = (n.opts||[]).find(o=>o.next===next); return o ? esc(o.label) : ""; }).filter(Boolean).join(" → ");
+  let body;
+  if (node.end){
+    body = `<div><div class="lbl" style="margin-bottom:6px">Do this</div><ol class="steps">${node.end.map(s=>`<li>${esc(s)}</li>`).join("")}</ol></div>
+      ${node.esc ? `<div class="esc"><b>Escalate:</b> ${esc(node.esc)}</div>` : ""}
+      ${node.ref && byId(node.ref) ? `<div><div class="lbl" style="margin-bottom:6px">Full SOP</div>${refButtons([node.ref])}</div>` : ""}`;
+  } else {
+    body = `<p style="margin:0;font-weight:600">${esc(node.q)}</p><div class="opts">${node.opts.map(o => `<button type="button" data-next="${esc(o.next)}">${esc(o.label)}</button>`).join("")}</div>`;
+  }
+  out.innerHTML = `<div class="card">
+    <div class="row" style="justify-content:space-between"><h3>${esc(pb.title)}</h3><div class="row"><button class="ghost" type="button" id="pbBack">Back</button><button class="ghost" type="button" id="pbAll">All playbooks</button></div></div>
+    ${crumbs ? `<div class="crumbs">${crumbs}</div>` : ""}
+    ${body}
+  </div>`;
+  out.querySelectorAll("[data-next]").forEach(b => b.addEventListener("click", () => { pbPath.push(b.dataset.next); renderPlaybooks(); }));
+  $("#pbBack").addEventListener("click", () => { if (pbPath.length > 1) pbPath.pop(); else pb = null; renderPlaybooks(); });
+  $("#pbAll").addEventListener("click", () => { pb = null; renderPlaybooks(); });
+}
+
+/* ---------- LIBRARY ---------- */
+let libCat = "All";
+$("#libSearch").addEventListener("input", renderLibrary);
+function renderLibrary(){
+  if (!S.loaded) { $("#libOut").innerHTML = `<div class="notice">Loading SOP library…</div>`; return; }
+  const cats = ["All", ...new Set(S.sop.map(s => s.cat))];
+  $("#libCats").innerHTML = cats.map(c => `<button class="chip" type="button" aria-pressed="${c===libCat}" data-cat="${esc(c)}">${esc(c)}</button>`).join("");
+  $("#libCats").querySelectorAll("[data-cat]").forEach(b => b.addEventListener("click", () => { libCat = b.dataset.cat; renderLibrary(); }));
+  const q = $("#libSearch").value.trim();
+  let list = S.sop.filter(s => libCat === "All" || s.cat === libCat);
+  if (q) list = list.map(e => [score(e,q),e]).filter(x=>x[0]>0).sort((a,b)=>b[0]-a[0]).map(x=>x[1]);
+  $("#libOut").innerHTML = list.length ? list.map(e => `<details class="sop" id="sop-${esc(e.id)}">
+      <summary><span><b>${esc(e.title)}</b><br><span class="catlabel">${esc(e.cat)}</span></span>${badge(e.status)}</summary>
+      <div class="bodyx">
+        <ul class="steps">${(e.body||[]).map(l=>`<li>${esc(l)}</li>`).join("")}</ul>
+        ${e.escalate ? `<div class="esc"><b>Escalate:</b> ${esc(e.escalate)}</div>` : ""}
+        <div class="row" style="justify-content:space-between"><span class="mono muted">${esc(e.source)} · updated ${esc(e.updated)}</span><button class="ghost" type="button" data-flag="${esc(e.id)}">Report wrong or outdated</button></div>
+        <div data-flagbox="${esc(e.id)}" hidden style="display:grid;gap:8px"><textarea placeholder="What's wrong, and what should it say?"></textarea><div class="row"><button class="primary" type="button" data-flagsend="${esc(e.id)}">Send to team lead</button></div></div>
+      </div></details>`).join("")
+    : `<div class="notice">No SOP entry matches. Ask on the Ask tab, or <button class="ghost" type="button" id="suggestBtn">suggest a new Q&amp;A</button>.</div>`;
+  $("#libOut").querySelectorAll("[data-flag]").forEach(b => b.addEventListener("click", () => { const box = $(`[data-flagbox="${b.dataset.flag}"]`); box.hidden = !box.hidden; }));
+  $("#libOut").querySelectorAll("[data-flagsend]").forEach(b => b.addEventListener("click", async () => {
+    const box = $(`[data-flagbox="${b.dataset.flagsend}"]`); const ok = await sendFeedback({kind:"down", question:"SOP entry: " + byId(b.dataset.flagsend).title, refs:[b.dataset.flagsend], comment: box.querySelector("textarea").value.trim()});
+    if (ok){ box.hidden = true; toast("Sent to your team lead"); }
+  }));
+  $("#suggestBtn")?.addEventListener("click", async () => { if (await sendFeedback({kind:"suggest", question: q, comment:"No SOP entry found for this search"})) toast("Suggested to your team lead"); });
+}
+
+/* ---------- REPLY CHECKER ---------- */
+$("#chkBtn").addEventListener("click", async () => {
+  const draft = $("#chkDraft").value.trim(), cust = $("#chkCust").value.trim();
+  if (!draft) { $("#chkDraft").focus(); return; }
+  if (!sample) { $("#chkOut").innerHTML = `<div class="notice">Claude isn't available in this view, so the reply can't be checked here.</div>`; return; }
+  if (!S.loaded) return;
+  $("#chkBtn").disabled = true;
+  $("#chkOut").innerHTML = `<div class="card"><div class="thinking"><span class="dot"></span>Checking against the SOP…</div></div>`;
+  const prompt = `You review customer-service replies for uParcel (Singapore courier). Check the agent's draft against the SOP entries below and the standard for a complete reply (entry resp-quality).
+Flag: wrong or missing SOP facts, promises the SOP doesn't allow (times, refunds, compensation), missing next step or timeline, missing tracking/job reference, internal information exposed (agent pay, penalties, internal names or files), unclear or rude tone, not answering the customer's actual question.
+Only use rules from the SOP entries; don't invent amounts. Then write an improved reply in plain, polite Singapore business English (start "Hi {name}," end "Regards, uParcel Customer Service"; placeholders for unknown details).
+Return JSON only:
+{"score": 1-5, "verdict": "one sentence", "issues": [{"severity": "high"|"medium"|"low", "issue": "...", "fix": "..."}], "improved_reply": "...", "refs": ["sop ids"]}
+
+SOP ENTRIES:
+${kbText()}
+
+CUSTOMER MESSAGE:
+${cust || "(not provided)"}
+
+AGENT'S DRAFT:
+${draft}`;
+  try {
+    const r = await sample.json(prompt, { modelTier: "default" });
+    const sc = Number(r.score)||0, cls = sc >= 4 ? "b-ok" : sc >= 3 ? "b-warn" : "b-bad";
+    const sev = {high:"b-bad", medium:"b-warn", low:"b-info"};
+    $("#chkOut").innerHTML = `<div class="card">
+      <div class="row" style="justify-content:space-between"><h3>Result</h3><span class="badge ${cls}">Score ${sc}/5</span></div>
+      <p style="margin:0">${esc(r.verdict)}</p>
+      ${(r.issues||[]).length ? `<div class="tablewrap"><table><thead><tr><th>Severity</th><th>Issue</th><th>Fix</th></tr></thead><tbody>${r.issues.map(i=>`<tr><td><span class="badge ${sev[i.severity]||"b-info"}">${esc(i.severity)}</span></td><td>${esc(i.issue)}</td><td>${esc(i.fix)}</td></tr>`).join("")}</tbody></table></div>` : `<div class="notice">No issues found.</div>`}
+      <div style="display:grid;gap:6px"><div class="row" style="justify-content:space-between"><span class="lbl">Suggested reply</span><button type="button" id="copyImp">Copy reply</button></div><div class="reply" id="impText">${esc(r.improved_reply)}</div></div>
+      ${(r.refs||[]).filter(byId).length ? `<div><div class="lbl" style="margin-bottom:6px">From the SOP</div>${refButtons(r.refs)}</div>` : ""}
+    </div>`;
+    $("#copyImp").addEventListener("click", () => copyText(r.improved_reply, $("#impText")));
+  } catch(e){
+    $("#chkOut").innerHTML = `<div class="notice">${e?.code === "rate_limited" ? "Too many checks at once — wait a minute and try again." : "Couldn't check the reply just now. Try again."}</div>`;
+  } finally { $("#chkBtn").disabled = false; }
+});
+
+/* ---------- CHECKLIST ---------- */
+let clId = "monitoring", clDone = {}, clUnsub = null;
+function clDocId(){ return `${today()}_${uid || "anon"}_${clId}`; }
+function subscribeChecks(){
+  clUnsub?.(); clDone = {};
+  if (!db || !uid) { renderChecklist(); return; }
+  clUnsub = db.doc("checks/" + clDocId()).onSnapshot(s => { clDone = (s.exists && s.data().done) || {}; renderChecklist(); }, () => {});
+}
+function renderChecklist(){
+  if (!S.loaded) { $("#clOut").innerHTML = `<div class="notice">Loading checklists…</div>`; return; }
+  $("#clPick").innerHTML = S.checklist.map(c => `<button class="chip" type="button" aria-pressed="${c.id===clId}" data-cl="${esc(c.id)}">${esc(c.title)}</button>`).join("") + `<span class="mono muted">${today()}</span>`;
+  $("#clPick").querySelectorAll("[data-cl]").forEach(b => b.addEventListener("click", () => { clId = b.dataset.cl; subscribeChecks(); }));
+  const list = S.checklist.find(c => c.id === clId) || S.checklist[0]; if (!list) return;
+  const n = list.items.length, d = list.items.filter((_,i) => clDone[i]).length;
+  $("#clOut").innerHTML = `<div class="card">
+    <div class="row" style="justify-content:space-between"><h3>${esc(list.title)}</h3><span class="mono">${d} / ${n} done</span></div>
+    <div class="bar"><i style="width:${n ? d/n*100 : 0}%"></i></div>
+    <div>${list.items.map((it,i) => `<label class="check ${clDone[i]?"done":""}"><input type="checkbox" id="cl-${esc(list.id)}-${i}" data-i="${i}" ${clDone[i]?"checked":""}><span class="t">${esc(it.time)}</span><span class="x">${esc(it.task)}</span></label>`).join("")}</div>
+    ${!uid ? `<div class="notice">Sign in to save your ticks.</div>` : ""}
+  </div>`;
+  $("#clOut").querySelectorAll("input[data-i]").forEach(cb => cb.addEventListener("change", async () => {
+    clDone = {...clDone, [cb.dataset.i]: cb.checked}; renderChecklist();
+    if (!db || !uid) return;
+    try { await db.doc("checks/" + clDocId()).set({uid, date: today(), list: clId, done: clDone, total: list.items.length, at: new Date().toISOString()}); }
+    catch { toast("Couldn't save — you may need 'can use' access"); }
+  }));
+}
+
+/* ---------- QUIZ ---------- */
+let quizAns = {}, quizDone = false;
+function renderQuiz(){
+  if (!S.loaded) { $("#quizOut").innerHTML = `<div class="notice">Loading quiz…</div>`; return; }
+  const qs = S.quiz;
+  const right = qs.filter(q => quizAns[q.id] === q.ans).length;
+  $("#quizOut").innerHTML = `<div style="display:grid;gap:12px">${qs.map((q,n) => `<div class="card">
+      <h3>${n+1}. ${esc(q.q)}</h3>
+      <div style="display:grid;gap:6px">${q.opts.map((o,i) => {
+        const cls = quizDone ? (i===q.ans ? "right" : (quizAns[q.id]===i ? "wrong" : "")) : "";
+        return `<label class="qopt ${cls}"><input type="radio" name="${esc(q.id)}" id="${esc(q.id)}-${i}" value="${i}" ${quizAns[q.id]===i?"checked":""} ${quizDone?"disabled":""}><span>${esc(o)}</span></label>`; }).join("")}</div>
+      ${quizDone && byId(q.ref) ? `<div class="row small"><span class="muted">SOP:</span>${refButtons([q.ref])}</div>` : ""}
+    </div>`).join("")}
+    <div class="card">${quizDone
+      ? `<div class="row" style="justify-content:space-between"><h3>Score: ${right} / ${qs.length} (${Math.round(right/qs.length*100)}%)</h3><span class="badge ${right/qs.length >= .8 ? "b-ok" : "b-bad"}">${right/qs.length >= .8 ? "Pass" : "Below 80% — review the SOP entries above"}</span></div><div class="row"><button type="button" id="quizRetry">Try again</button></div>`
+      : `<div class="row"><button class="primary" type="button" id="quizSubmit">Submit answers</button><span class="small muted">${Object.keys(quizAns).length} of ${qs.length} answered</span></div>`}</div></div>`;
+  $("#quizOut").querySelectorAll("input[type=radio]").forEach(r => r.addEventListener("change", () => { quizAns[r.name] = Number(r.value); renderQuiz(); }));
+  $("#quizSubmit")?.addEventListener("click", async () => {
+    quizDone = true; renderQuiz(); scrollTo({top:0});
+    const sc = S.quiz.filter(q => quizAns[q.id] === q.ans).length;
+    if (db && uid) { try { await db.collection("quiz_results").add({uid, score: sc, total: S.quiz.length, wrong: S.quiz.filter(q => quizAns[q.id] !== q.ans).map(q=>q.id), at: new Date().toISOString()}); } catch {} }
+  });
+  $("#quizRetry")?.addEventListener("click", () => { quizAns = {}; quizDone = false; renderQuiz(); });
+}
+
+/* ---------- REVIEW ---------- */
+async function renderReview(){
+  if (!canEdit) return;
+  const open = S.feedback.filter(f => f.status === "open").sort((a,b) => (b.at||"").localeCompare(a.at||""));
+  const ids = [...new Set([...open.map(f=>f.uid), ...S.results.map(r=>r.uid)].filter(Boolean))];
+  let ps = {}; try { if (user && ids.length) ps = await user.profiles(ids); } catch {}
+  const nm = id => (ps[id] && ps[id].name) || "Someone";
+  const byUser = {}; S.results.forEach(r => { const u = r.uid || "?"; (byUser[u] ||= []).push(r); });
+  const missCount = {}; S.results.forEach(r => (r.wrong||[]).forEach(w => missCount[w] = (missCount[w]||0)+1));
+  const topMiss = Object.entries(missCount).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  $("#revOut").innerHTML = `
+  <div class="card"><h3>Flagged answers and suggestions (${open.length} open)</h3>
+    ${open.length ? open.map(f => `<div style="display:grid;gap:6px;border-top:1px solid var(--line);padding-top:10px">
+      <div class="row" style="justify-content:space-between"><span><span class="badge ${f.kind==="suggest"?"b-info":"b-bad"}">${f.kind==="suggest"?"Suggestion":"Flagged"}</span> <b>${esc(f.question)}</b></span><span class="mono muted">${esc(nm(f.uid))} · ${esc((f.at||"").slice(0,16).replace("T"," "))}</span></div>
+      ${f.answer ? `<div class="small muted">Answer given: ${esc(f.answer)}</div>` : ""}
+      ${f.comment ? `<div class="small">Agent's note: ${esc(f.comment)}</div>` : ""}
+      ${(f.refs||[]).length ? refButtons(f.refs) : ""}
+      <div class="row"><button type="button" data-resolve="${esc(f._id)}">Mark resolved</button></div>
+    </div>`).join("") : `<div class="notice">Nothing flagged. Agents' flags appear here, and the daily refresh turns them into SOP updates.</div>`}
+  </div>
+  <div class="card"><h3>Quiz results</h3>
+    ${Object.keys(byUser).length ? `<div class="tablewrap"><table><thead><tr><th>Agent</th><th>Attempts</th><th>Best</th><th>Latest</th></tr></thead><tbody>${Object.entries(byUser).map(([u, rs]) => { rs.sort((a,b)=>(a.at||"").localeCompare(b.at||"")); const best = Math.max(...rs.map(r=>r.score/r.total)); const last = rs[rs.length-1]; return `<tr><td>${esc(nm(u))}</td><td class="mono">${rs.length}</td><td class="mono">${Math.round(best*100)}%</td><td class="mono">${last.score}/${last.total} · ${esc((last.at||"").slice(0,10))}</td></tr>`; }).join("")}</tbody></table></div>
+      ${topMiss.length ? `<div><div class="lbl" style="margin:6px 0">Most-missed questions</div><ul class="steps">${topMiss.map(([id,n]) => { const q = S.quiz.find(x=>x.id===id); return q ? `<li>${esc(q.q)} <span class="mono muted">(${n}×)</span></li>` : ""; }).join("")}</ul></div>` : ""}`
+      : `<div class="notice">No quiz attempts yet.</div>`}
+  </div>`;
+  $("#revOut").querySelectorAll("[data-resolve]").forEach(b => b.addEventListener("click", async () => {
+    try { await db.doc("feedback/" + b.dataset.resolve).update({status:"resolved", resolvedAt: new Date().toISOString()}); toast("Resolved"); } catch { toast("Couldn't update"); }
+  }));
+}
+
+/* ---------- render all ---------- */
+function renderAll(){ renderStat(); renderPlaybooks(); renderLibrary(); renderChecklist(); renderQuiz(); if (!$('[data-view="review"]').hidden) renderReview(); }
+renderAll(); route();
+
+/* ---------- capabilities ---------- */
+(async () => {
+  if (!window.claude?.use) { $("#stat").innerHTML = `<span>Open this page in claude.ai to load the SOP library.</span>`; return; }
+  const timer = setTimeout(() => { if (!S.loaded) $("#stat").innerHTML = `<span>Still loading — check your connection and refresh.</span>`; }, 10000);
+  [db, sample, user] = await Promise.all([claude.use("db"), claude.use("sample"), claude.use("user")]);
+  if (user) { try { uid = await user.id(); canEdit = !!(await user.canEdit()); } catch {} }
+  $("#reviewTab").hidden = !canEdit;
+  if (!sample) $("#askHint").textContent = "Claude isn't available in this view — you'll get matching SOP entries instead.";
+  if (!db) { clearTimeout(timer); $("#stat").innerHTML = `<span>Sign in to claude.ai to load the SOP library.</span>`; return; }
+  const got = new Set();
+  const done = k => { got.add(k); if (got.size >= 5 && !S.loaded){ S.loaded = true; clearTimeout(timer); subscribeChecks(); } renderAll(); };
+  const sortO = a => a.sort((x,y) => (x.order??0) - (y.order??0));
+  for (const c of ["sop","playbooks","checklist","quiz"]) {
+    db.collection(c).onSnapshot(s => { S[c] = sortO(s.docs.map(d => d.data())); done(c); }, () => done(c));
+  }
+  db.doc("meta/info").onSnapshot(s => { S.meta = s.exists ? s.data() : null; done("meta"); }, () => done("meta"));
+  if (canEdit) {
+    db.collection("feedback").onSnapshot(s => { S.feedback = s.docs.map(d => ({...d.data(), _id: d.id})); renderStat(); if (!$('[data-view="review"]').hidden) renderReview(); }, () => {});
+    db.collection("quiz_results").onSnapshot(s => { S.results = s.docs.map(d => d.data()); if (!$('[data-view="review"]').hidden) renderReview(); }, () => {});
+  }
+  route();
+})();
+})();
+</script>

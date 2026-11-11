@@ -1,0 +1,1838 @@
+{
+ "sop": [
+  {
+   "id": "svc-levels",
+   "cat": "Service levels & timings",
+   "title": "Service types, booking cut-offs and delivery deadlines",
+   "keywords": "1 hour rush 3 hour express same day next day specific slot round trip cut-off last booking deadline night surcharge",
+   "body": [
+    "1 Hour Rush / Night: delivered within 1 hr of pickup. Bookable 24/7; night surcharge 11pm–7am.",
+    "3 Hours Express: pickup and delivery within 3 hrs. Last booking 8pm, completed by 11pm.",
+    "Same Day: pickup and delivery within 6 hrs. Last booking 5pm (12pm for office deliveries), completed by 11pm.",
+    "Next Day: pickup on booking day. Last booking 7pm, delivered by 11pm next day.",
+    "Specific Slot: date and time set to the minute. Last booking 6pm, delivered within ±30 mins of the slot.",
+    "2-Way Round Trip: A → B, then B → A the same day. Last booking 5pm, completed by 11pm.",
+    "When chasing drivers, go in this order: 1-hour rush → 3-hour express → same day → next day."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §4",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 0
+  },
+  {
+   "id": "svc-priority",
+   "cat": "Service levels & timings",
+   "title": "Which jobs to clear first (priority order)",
+   "keywords": "priority order which job first pending acceptance clear sgh tiktok shopee bakes telemedical",
+   "body": [
+    "Clear Pending Acceptance in this order: SGH (never outsource, refer to Hamyzan) → TikTok → Shopee/Lazada → bakes and cooked food → telemedical → normal customers.",
+    "Priority order jobs (refer to Philip), 1-hr rush, 3-hr express and non-movables must never lapse or expire.",
+    "Check that 1-hr rush and 3-hr express jobs are picked up and delivered within the timeslot."
+   ],
+   "escalate": "Priority order jobs → Philip. SGH → Hamyzan.",
+   "source": "Operations Master SOP 2026 §6.1",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 1
+  },
+  {
+   "id": "mon-atrisk",
+   "cat": "Delivery monitoring",
+   "title": "How to work the At Risk Dashboard",
+   "keywords": "at risk dashboard monitoring late pickup late delivery rookie agent check track",
+   "body": [
+    "On the At Risk Dashboard: assign the job to yourself, contact the agent, then mark it checked with a reason.",
+    "Check rookie agents only. Subcons, fleet, Gold and Platinum agents are skipped.",
+    "Late pickup (30 mins left in the pickup window): track the agent and WhatsApp for an ETA. If the agent is missing, block the agent; ask the seller to push the time, or Lalamove a non-movable job.",
+    "Late delivery (30+ mins over): if the agent is far, WhatsApp for an ETA. No reply → flag it in the group chat."
+   ],
+   "escalate": "Agent MIA or unresolved over 1 shift → Philip (Fulfilment lead).",
+   "source": "Operations Master SOP 2026 §6.4",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 2
+  },
+  {
+   "id": "mon-puip",
+   "cat": "Delivery monitoring",
+   "title": "Checking PUIP (pickup in progress) jobs and ETAs",
+   "keywords": "puip pickup in progress eta gps far from pickup no answer remove outsource cliq",
+   "body": [
+    "Check all PUIP jobs with ETAs and post follow-ups in Cliq.",
+    "Agent does not answer, or GPS shows them far from the pickup → remove the agent, then move the job to the next slot if it is movable, or outsource it.",
+    "Shopee/Lazada: PUIP check at 11.30am. TikTok: update PUIP ETAs in Cliq every 30–45 mins from 1–3.30pm; full PUIP check at 6pm (afternoon) and 7.30pm (evening).",
+    "Telemedical: check PUIP and Item Picked Up jobs on the At Risk Dashboard hourly from 10am."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §6.1",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 3
+  },
+  {
+   "id": "mon-latecheck",
+   "cat": "Delivery monitoring",
+   "title": "Fixed times to check late pickups and late deliveries",
+   "keywords": "late pickup check time late delivery check shopee lazada 11.15 2.30 4pm 7.30",
+   "body": [
+    "Shopee/Lazada: AM late pickups at 11.15am; AM late deliveries at 2.30pm; PM late pickups at 4pm; PM late deliveries at 7.30pm.",
+    "TikTok: watch afternoon routes 5.30–7.30pm and evening routes 8–10.30pm; warn buyers of a late delivery before they chase.",
+    "Telemedical: hourly At Risk check from 10am so there are no late pickups or deliveries."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §6.1",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 4
+  },
+  {
+   "id": "mon-close",
+   "cat": "Delivery monitoring",
+   "title": "Closing jobs at end of day (Lalamove, LLM, move-over)",
+   "keywords": "close lalamove job close llm end of shift 11pm move-over file reverted file overtime",
+   "body": [
+    "Close every Lalamove job the same day. Attach POD only if it was on time.",
+    "9.45pm: close all Lalamove jobs. 10–11pm: close all Lalamove and LLM jobs and any morning/afternoon jobs not yet closed.",
+    "End of day: update the Move-over and Reverted files.",
+    "11pm: every job is closed before the shift ends. At least 1 CS stays until all jobs are closed; anyone staying back is logged for OT."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §6.1, 6.3",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 5
+  },
+  {
+   "id": "mon-morning",
+   "cat": "Delivery monitoring",
+   "title": "Start-of-shift clean-up (8.30am)",
+   "keywords": "8.30am morning expired jobs open lalamove unanswered whatsapp undelivered item picked last 5 days non-repostable",
+   "body": [
+    "At 8.30am clear: expired jobs, open Lalamove jobs, unanswered WhatsApp, undelivered or item-picked jobs from the last 5 days, and non-repostable cancellations.",
+    "9–10am: identify moved-over jobs and make them the priority to clear the same day.",
+    "From 10am, every 2–3 hrs: check non-repostable, expired and expiring jobs."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §6.1",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 6
+  },
+  {
+   "id": "pa-steps",
+   "cat": "Jobs not accepted",
+   "title": "A job is still in Pending Acceptance — what do I do?",
+   "keywords": "pending acceptance not accepted no driver no taker unaccepted find a driver top up",
+   "body": [
+    "1. Call drivers already en route nearby and use Find a Driver.",
+    "2. Leftover jobs: give them to an agent already assigned and heading to the same cluster, zone, postal sector or collection point (same seller).",
+    "3. Top up in steps (see Top-up rules) until the fee matches the outsource cost, no later than 30 mins before the pickup window ends.",
+    "4. Still no taker: match the Lalamove price in uParcel for 10 mins, send a notification and push to Urgent.",
+    "5. Still no taker: movable job → move to the next slot/day and log it in the Move-over file. Non-movable → outsource via the Lalamove API in the Admin portal.",
+    "Never outsource SGH jobs — refer them to Hamyzan. TikTok jobs are never moved to the next day."
+   ],
+   "escalate": "Outsourcing decisions → Philip. SGH → Hamyzan.",
+   "source": "Operations Master SOP 2026 §6.1–6.3",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 7
+  },
+  {
+   "id": "pa-topup",
+   "cat": "Jobs not accepted",
+   "title": "Top-up rules",
+   "keywords": "top up how much top-up step auto top-up low priority $1 $2 tip outsource cost",
+   "body": [
+    "Auto top-up covers important customers. Manual top-up only after auto top-up ends, always in steps.",
+    "Top up gradually by priority until the fee matches the outsource cost, no later than 30 mins before the end of the pickup timeslot.",
+    "Medical and e-commerce: $2 steps after auto top-up. Medical at night: top up until it matches the outsource cost, by 8.30pm at the latest.",
+    "TikTok: top up from $1 in steps against the Lalamove price (3.30–4.30pm afternoon; after 6pm evening).",
+    "Bakes, cakes and non-movables: match the Lalamove price every 10 mins from 11am.",
+    "Shopee urgent same-day (cakes, bread, cooked food, fresh meat/seafood): mark Urgent, extend to 3 hrs, top up to $8 max, tell Fulfilment.",
+    "Low-priority customers: no top-up. Customer may tip or rebook. On a written complaint, $1–2 max."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §6.2",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 8
+  },
+  {
+   "id": "pa-lalamove",
+   "cat": "Jobs not accepted",
+   "title": "When and how to outsource to Lalamove",
+   "keywords": "lalamove outsource last resort api admin portal urgent notification",
+   "body": [
+    "Lalamove is the last resort on the assignment ladder.",
+    "1. Check in-house drivers first.",
+    "2. Match the Lalamove price in uParcel for 10 mins, send a notification, push to Urgent.",
+    "3. Only then outsource — through the Lalamove API in the Admin portal only.",
+    "4. Close every Lalamove job the same day. Attach POD only if on time.",
+    "Never outsource SGH jobs. Cakes and bakes go via the Lalamove API."
+   ],
+   "escalate": "Outsourcing approval → Philip; TikTok afternoon outsourcing approved by Faiq, evening by Senior CS.",
+   "source": "Operations Master SOP 2026 §6.3",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 9
+  },
+  {
+   "id": "pa-moveover",
+   "cat": "Jobs not accepted",
+   "title": "Moving a job to the next slot or day (move-over)",
+   "keywords": "move over next day movable non-movable reschedule moveover file buyer",
+   "body": [
+    "Only movable jobs may be moved. Never move: medical/telemedical, SGH (without Hamyzan), TikTok, bakes/cakes/cooked food, or other non-movables.",
+    "Shopee/Lazada AM: at 11.45am move movable AM jobs to PM — call buyers, update sellers, check PUIP. No jobs may expire after 12pm.",
+    "Shopee/Lazada PM: 4.30–5pm move movable Pending Acceptance jobs to the next day and log them in the Move-over file. Zero Pending Acceptance by 5pm.",
+    "Shopee may roll up to 5% of jobs (movables only). Lazada must hit 100%.",
+    "Update the Move-over file at end of day."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §6.1, 12",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 10
+  },
+  {
+   "id": "pa-deadlines",
+   "cat": "Jobs not accepted",
+   "title": "Zero-Pending-Acceptance deadlines by account",
+   "keywords": "deadline zero pending acceptance by when outsource by 5pm 6pm 7pm 7.30pm tiktok shopee sgh tsuklio",
+   "body": [
+    "Shopee/Lazada: outsource non-movables by 4.30pm; zero Pending Acceptance by 5pm.",
+    "TikTok afternoon: outsource by 5pm; zero Pending Acceptance by 6pm.",
+    "TikTok evening: outsource by 7pm; zero Pending Acceptance by 7.30pm; all evening pickups done by 8pm.",
+    "SGH same-day: all assigned, zero Pending Acceptance by 1–2pm and again 4–5pm.",
+    "Tsuklio: all assigned by 2pm; drivers at 28 Tai Seng by 3pm.",
+    "Telemedical: night duty from 7.30pm; Minmed not accepted by 8.30pm → Lalamove; all delivered by 9pm."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §6.1",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 11
+  },
+  {
+   "id": "pa-warehouse",
+   "cat": "Jobs not accepted",
+   "title": "Jobs picked up from 6 Defu South St 1 #05-24 (uParcel warehouse)",
+   "keywords": "warehouse job defu 05-24 denzel expired cancel",
+   "body": [
+    "Any job picked up from 6 Defu South St 1 #05-24 is a uParcel warehouse job, whatever customer name is on it.",
+    "Never cancel a warehouse job.",
+    "If a warehouse job expires or is not accepted, flag it at once to the Ops team, the Fulfilment team or Denzel."
+   ],
+   "escalate": "Denzel (Warehouse Manager) / Ops team.",
+   "source": "Operations Master SOP 2026 §6.4",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 12
+  },
+  {
+   "id": "fd-noone",
+   "cat": "Failed deliveries & returns",
+   "title": "Recipient not around to receive",
+   "keywords": "no one home recipient not around cannot contact left at door safe spot perishable medical",
+   "body": [
+    "Agent calls the customer and keeps the call log.",
+    "Perishables: leave somewhere safe and take all 3 PODs (waybill, item with unit number, where it was left). Send the photo to the customer and write where it was left in the remarks.",
+    "Medical items: agent must contact CS. Medical items are never left unattended without the PIN.",
+    "TikTok perishables: one attempt only; if it fails, leave at the door with proof (WhatsApp or POD showing where)."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §15.3, 13",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 13
+  },
+  {
+   "id": "fd-noaccess",
+   "cat": "Failed deliveries & returns",
+   "title": "Location cannot be accessed / undelivered",
+   "keywords": "cannot access location undelivered return next working day returned status condo restricted",
+   "body": [
+    "Agent calls the customer and keeps the call log.",
+    "Update the job to Undelivered with photo proof and the call log.",
+    "Return the item the next working day and update the job to Returned with photo proof.",
+    "Items go back to the sender when: customer can't be contacted and location can't be accessed; a medical item and the customer hasn't advised how to receive it; or the address is in a restricted area.",
+    "TikTok non-perishables: one re-attempt within 2 working days, then return to seller (return fee to driver). POD and call logs uploaded before marking undelivered."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §15.3–15.4, 13",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 14
+  },
+  {
+   "id": "fd-sellerclosed",
+   "cat": "Failed deliveries & returns",
+   "title": "Failed pickup: seller closed, item not ready, or under-declared",
+   "keywords": "failed pickup seller closed parcel not ready under-declared cancel reason 50% fee waiting",
+   "body": [
+    "Seller closed: agent calls the seller and CS, keeps the call log and a photo, then cancels with reason 'Arrived but seller closed' with the photo and call log as POD.",
+    "Items can't be located: cancel with reason 'Parcel not ready' with proof photo and call log.",
+    "Under-declared: agent contacts CS, cancels with reason 'Parcel under-declared' with a photo of the item.",
+    "A 50% cancellation fee applies when the agent arrived and the item was not ready / wrong address / under-declared. Cancel with the correct status; the customer must acknowledge the fee first.",
+    "TikTok failed pickup (seller's fault) = 50% fee: waiting over 15 mins, item not packed (10-min allowance), shop closed, wrong waybill, nobody present."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §15.2, 8.2, 13",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 15
+  },
+  {
+   "id": "fd-reverted",
+   "cat": "Failed deliveries & returns",
+   "title": "Reverted status",
+   "keywords": "reverted status revert file seller track delivered returned",
+   "body": [
+    "Verify with the seller, inform Ops, log it in the Revert file, and track the job until it is Delivered or Returned."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §7.4",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 16
+  },
+  {
+   "id": "fd-wrongitem",
+   "cat": "Failed deliveries & returns",
+   "title": "Wrong item handed over (TikTok)",
+   "keywords": "wrong item handed over return within 4 hours tiktok",
+   "body": [
+    "Return within 4 hrs of the slot end (e.g. 3.30–7.30pm slot → by 11.30pm). If the seller is closed, the next working day."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §13",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 17
+  },
+  {
+   "id": "fd-pod",
+   "cat": "Failed deliveries & returns",
+   "title": "What a valid POD must show",
+   "keywords": "pod proof of delivery photo waybill unit number doorstep valid reject",
+   "body": [
+    "Every POD must show #1 the full waybill/label and #2 the item with the unit number in view (matching #1).",
+    "If no one receives, #3 is also required: the item and where it was left.",
+    "Good lighting, no blur, whole parcel in frame. Improper PODs result in claims if the agent is found liable.",
+    "SGH ambient: POD shows the unit number. SGH cold chain: cooler box at the unit, data logger at 2–8°C, and the recipient; hand over in person only."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §15.3, 11",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 18
+  },
+  {
+   "id": "acc-tiktok",
+   "cat": "Account rules",
+   "title": "TikTok rules",
+   "keywords": "tiktok timeslot afternoon evening penalty late pickup $15 wrong status repost weight 30kg stacking 4 hours",
+   "body": [
+    "100% fulfilment; no TikTok job is ever moved to the next day — if capacity is short, outsource.",
+    "Afternoon: pickup 3–6.30pm, delivery 3.30–7.30pm. Evening: pickup 5.30–8pm, delivery 6.30–10.30pm.",
+    "Delivery deadline: 4 hrs from pickup. Over 4 hrs is a breach regardless of timeslot.",
+    "Penalties: late pickup $15/job; wrong status update $15/job (recovered from the agent).",
+    "Max 30 kg / 200 cm; over- or under-declared → raise to TikTok at once. Max 10 drops per slot unless subcon/regular driver.",
+    "Never repost in admin — the TikTok API reposts. If a cancellation was valid, flag it to TikTok and delete the job in admin when told."
+   ],
+   "escalate": "Faiq (owner), Philip (Senior CS).",
+   "source": "Operations Master SOP 2026 §13",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 19
+  },
+  {
+   "id": "acc-tiktok-tickets",
+   "cat": "Account rules",
+   "title": "Working TikTok Tokgistic tickets",
+   "keywords": "tokgistic ticket tiktok consultation complaint compensation pend refuse solve lark",
+   "body": [
+    "Tickets come through Tokgistic (partner.tokgistic.com); enquiries through Lark (selected members, SLA 24 hrs).",
+    "Consultation: resolve within 24 hrs. Complaint (late delivery/pickup, damage): 2 working days. Compensation: 5 working days.",
+    "1. Take the ticket from Open tickets in my group. 2. Investigate with POD, GPS and call logs; attach evidence. 3. Use Pend while waiting. 4. On complaints, Confirm or Refuse responsibility — a refusal needs a structured reason. 5. Mark as solved.",
+    "Log TikTok claims (liable / not liable) in the Top up / Internal Claims file."
+   ],
+   "escalate": "Carmen (Support lead).",
+   "source": "Operations Master SOP 2026 §13",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 20
+  },
+  {
+   "id": "acc-shopee",
+   "cat": "Account rules",
+   "title": "Shopee / Lazada rules",
+   "keywords": "shopee lazada collection 2-5pm delivery 3-7pm cut-off 9pm 95% 100% ushop mustafa dingtalk",
+   "body": [
+    "Collection 2–5pm, delivery 3–7pm. Booking cut-off 9pm (Shopee later → day after next).",
+    "Lazada target 100%. Shopee ≥95% (5% movables may move 1 day; non-movables excluded).",
+    "Ushop and Mustafa follow the Lazada rules: complete the same day; cancel only if necessary.",
+    "Urgent and move-over Shopee jobs may be outsourced the same day.",
+    "Lazada via DingTalk (as soon as received, SLA 24 hrs); escalation tickets and confirmation portal within 48 hrs. Shopee escalation tickets: first response within 2 hrs."
+   ],
+   "escalate": "Faiq (owner), Ira (Fulfilment assistant lead).",
+   "source": "Operations Master SOP 2026 §12",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 21
+  },
+  {
+   "id": "acc-shopee-requests",
+   "cat": "Account rules",
+   "title": "Shopee seller/buyer requests (reschedule, bring forward, returns, address change)",
+   "keywords": "shopee reschedule bring forward already accepted repost cancel return address change admin cancel",
+   "body": [
+    "Bring forward same day: no top-up; returns to the original date when the slot expires.",
+    "Reschedule ≥1 day ahead: log in the Move-over sheet; treat as a first attempt on the new date.",
+    "Already accepted: not rescheduled — advise the seller to decline the buyer's request.",
+    "Repost after customer cancel or failed pickup: seller reposts. If the agent used a wrong reason, repost and block the agent.",
+    "Agent cancels for other reasons: auto-reposted; if not, report to IT. Admin cancel: always with remarks.",
+    "Returns: return status = Shopee cancels; no repost. Same-day seller return and recipient-initiated returns carry a fee. Agents may not refuse.",
+    "Address change: before acceptance only, unless the agent agrees."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §12",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 22
+  },
+  {
+   "id": "acc-sgh",
+   "cat": "Account rules",
+   "title": "SGH (key account) rules",
+   "keywords": "sgh hospital cold chain pin hamyzan never outsource vivance",
+   "body": [
+    "SGH jobs are never outsourced and never moved to another day without Hamyzan. Any SGH job still pending goes to Hamyzan.",
+    "Cold chain PIN: release only after the agent sends a photo showing an identifiable recipient present. All PINs: POD must confirm hand delivery via WhatsApp or KChat.",
+    "Reject SGH PODs missing the unit number, cooler box, logger reading or recipient; flag to Hamyzan.",
+    "Undeliverable cold chain → return to HQ. Vivance SGH follows SGH rules."
+   ],
+   "escalate": "Hamyzan first, then Faiq.",
+   "source": "Operations Master SOP 2026 §11",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 23
+  },
+  {
+   "id": "acc-tele",
+   "cat": "Account rules",
+   "title": "Telemedical rules (HMI, Minmed, Alliance, Parkway, CGH, KTPH, Noah)",
+   "keywords": "telemedical medical minmed alliance noah health clinic 9pm pin never moved",
+   "body": [
+    "Medical jobs are never moved; every telemedical job is delivered the same day by 9pm.",
+    "Minmed: hourly bookings only, no stacking. Pickup within 30 mins of acceptance or block the agent. Not accepted by 8.30pm → Lalamove. PIN comes from the patient only; never leave unattended.",
+    "Alliance: 3-hr jobs strictly within 9am–12pm or 1–4pm.",
+    "Noah Health: deliver within 4 hrs (max 1 hr late). Tell the patient the delivery window; no extensions.",
+    "PIN requests: POD must confirm hand delivery via WhatsApp or KChat."
+   ],
+   "escalate": "Philip first, then Faiq.",
+   "source": "Operations Master SOP 2026 §10",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 24
+  },
+  {
+   "id": "acc-corp",
+   "cat": "Account rules",
+   "title": "Corporate accounts and priority bakes/F&B sellers",
+   "keywords": "corporate tsuklio gfk vivance bioskin cat fiddle lady m bakes cakes non-movable priority sellers",
+   "body": [
+    "Tsuklio Bento (Hamyzan): all jobs assigned by 2pm; drivers at 28 Tai Seng by 3pm.",
+    "Project jobs (Bioskin & Sinda, Aster Mobility, Tan Cheong, Plasmidsaurus): Ira.",
+    "Key F&B (Cat & Fiddle, Lady M, Novita): Philip; perishables.",
+    "Priority non-movable sellers: Vanda Paws, Cat & Fiddle, Venchi, Swensen's, Take a Bake, eCreative, Mdm Ling, Hipster Bakes, Ritz, Cookie Dealer SG, Jenna Macarons, SL Food, Shangri-La.",
+    "Bakes/cakes/cooked food: from 11am match the Lalamove price every 10 mins; Lalamove at 11.45am (AM) or 4.30pm (PM) if still unaccepted."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §14",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 25
+  },
+  {
+   "id": "fee-rules",
+   "cat": "Fees, refunds & claims",
+   "title": "Fee rules: return fee, failed pickup, 50% cancellation",
+   "keywords": "fee return fee failed pickup fee 50% cancellation charge customer",
+   "body": [
+    "Return fee: only with the merchant's prior approval.",
+    "Failed pickup (agent arrived): one fee per location regardless of parcel count; none if only 1 of a batch failed.",
+    "50% cancellation fee: agent arrived and the item was not ready / wrong address / under-declared. Cancel with the correct status; the customer acknowledges the fee first. TikTok includes a 15+ min wait."
+   ],
+   "escalate": "Refunds and payout disputes → Mabeline Xie (CFO).",
+   "source": "Operations Master SOP 2026 §8.2",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 26
+  },
+  {
+   "id": "fee-late",
+   "cat": "Fees, refunds & claims",
+   "title": "Late delivery partial refund",
+   "keywords": "late delivery refund downgrade partial refund e-wallet credit job amendment",
+   "body": [
+    "Downgrade the job to the service actually achieved (e.g. a 3-hr job delivered after 5 hrs → Same Day).",
+    "Deduct the difference from the agent; credit the customer's e-wallet via a job amendment.",
+    "Note: the exact price-amendment calculation is not yet in the knowledge base. Check the amended price with your lead before confirming an amount to the customer."
+   ],
+   "escalate": "Carmen; refunds → CFO.",
+   "source": "Operations Master SOP 2026 §8.2",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 27
+  },
+  {
+   "id": "fee-oversize",
+   "cat": "Fees, refunds & claims",
+   "title": "Oversized parcel",
+   "keywords": "oversized parcel size weight photo amend order",
+   "body": [
+    "Agent uploads a size and weight photo. CS checks by shift end; admin uploads it if missing; amend the order."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §7.4, 8.2",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 28
+  },
+  {
+   "id": "claim-procedure",
+   "cat": "Fees, refunds & claims",
+   "title": "Claim procedure (damaged, lost, late) — Shopee, Lazada, corporate",
+   "keywords": "claim damaged lost missing broken smashed compensation investigate liable 5 days express@uparcel.sg",
+   "body": [
+    "Claims must reach express@uparcel.sg within 5 calendar days of delivery; later claims are rejected.",
+    "1. Log every claim, valid or not, in the Claims file and withhold the agent's pay.",
+    "2. Admin Panel > User > Agent: set 'Have Claims?' to Yes (blocks instant cash-out).",
+    "3. Investigate: delivered within the time frame? POD and GPS valid? If not, ask the agent for POD, call logs or message logs.",
+    "4. Decide: 2 or more of POD, GPS, call logs, message logs valid → reject. 1 or fewer → accept. Late and damaged → accept, unless frozen goods were delivered within 5 hrs of pickup.",
+    "5. Invalid: reject and release pay. Valid: get the claim form (with proof of refund) from the merchant or Shopee CS; send to Finance and Shopee CS.",
+    "6. Close the case in the Claims file. Shopee pays the seller; uParcel never pays sellers directly."
+   ],
+   "escalate": "Unclear cases → Faiq or Carmen. Claims over the agreed limit → CFO.",
+   "source": "Operations Master SOP 2026 §8.1",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 29
+  },
+  {
+   "id": "claim-what",
+   "cat": "Fees, refunds & claims",
+   "title": "What is claimable vs not claimable",
+   "keywords": "claimable not claimable cake smashed frozen defrosted left at door wrong unit",
+   "body": [
+    "Claimable: cake fully smashed with photo (full) or partly smashed (partial); pastries toppled (partial); frozen item delivered 5+ hrs after pickup (full, excl. non-perishables); frozen item left at door with no notification (full); wrong unit/address, unrecoverable (full).",
+    "Not claimable: frozen item defrosted though delivered on time (product issue); left at door after SMS/WhatsApp/call to recipient; left at door with pickup SMS sent via CM.com."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §8.1",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 30
+  },
+  {
+   "id": "claim-platform",
+   "cat": "Fees, refunds & claims",
+   "title": "Where each platform's claims arrive and are logged",
+   "keywords": "claims file shopee claims tracking lazada xspace tokgistic top up internal claims",
+   "body": [
+    "Shopee: arrives by email → Shopee Claims Tracking file.",
+    "Lazada: arrives via the Xspace portal → update the Lazada Claims portal; liable cases in the Top up / Internal Claims file.",
+    "TikTok: arrives as a Tokgistic ticket → Top up / Internal Claims file."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §7.5",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 31
+  },
+  {
+   "id": "req-changes",
+   "cat": "Customer requests & job changes",
+   "title": "Change of date, address, email or account details",
+   "keywords": "change date change address change email contact details delete account amend",
+   "body": [
+    "Change of date: change on the Admin portal; update the Moveover file.",
+    "Change of address: change on the Admin portal. After agent acceptance, only with the agent's agreement.",
+    "Change of email, contact or other details: request must come by email; change on Admin; update the Access Correction file.",
+    "Delete an active account: request must come by email; send the request on the Agent / Customer deletion chat; update the Access Correction file."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §7.4",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 32
+  },
+  {
+   "id": "req-wallet",
+   "cat": "Customer requests & job changes",
+   "title": "Wallet top-up checks",
+   "keywords": "wallet top up transfer slip credit payment check",
+   "body": [
+    "Check the transfer slip, amount, sender's full name and bank before crediting."
+   ],
+   "escalate": "Payout disputes → CFO.",
+   "source": "Operations Master SOP 2026 §7.4",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 33
+  },
+  {
+   "id": "req-faster",
+   "cat": "Customer requests & job changes",
+   "title": "Customer asks for a faster pickup",
+   "keywords": "faster pickup urgent hurry customer chasing driver tip rebook",
+   "body": [
+    "Low-priority customers: advise adding a tip or rebooking. $1–2 top-up only on a written complaint.",
+    "Important customers are covered by auto top-up; manual top-up only after it ends, in steps."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §14, 6.2",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 34
+  },
+  {
+   "id": "agent-approval",
+   "cat": "Agents & accounts",
+   "title": "Approving agent and Partner Fleet registrations",
+   "keywords": "agent approval registration nric s t profile photo quiz partner fleet 7 days deletion access correction",
+   "body": [
+    "Approve the same day if profile photo and quiz are complete, plus (manual applicants) an NRIC upload matching the NRIC field.",
+    "Only NRICs starting with S or T.",
+    "Message incomplete applicants; log what's needed and the due date in the profile log.",
+    "Still incomplete 7 days after the reminder: agents → request deletion on the Agent / Customer deletion chat (system auto-deletes at 30 days); Partner Fleet → delete the profile.",
+    "Update the Access Correction file."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §7.3, 8.3",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 35
+  },
+  {
+   "id": "agent-rules",
+   "cat": "Agents & accounts",
+   "title": "Rules agents must follow (pickup, cancellation, scanning)",
+   "keywords": "agent rules cancel ban accepted job scan waybill timeslot stacking",
+   "body": [
+    "Only accept jobs you can pick up within the window; check size fits the vehicle.",
+    "All deliveries follow the timeslot unless CS says otherwise.",
+    "Cancelling an accepted job leads to a ban, except the pickup cases (seller closed, not ready, under-declared) done with CS and proof.",
+    "Scan all items against the waybill at pickup; scan again before delivery."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §15",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 36
+  },
+  {
+   "id": "resp-standards",
+   "cat": "Responses & escalation",
+   "title": "Response time standards per channel",
+   "keywords": "response time sla chat 5 mins email 2 hrs call 15 rings whatsapp 20 mins dingtalk lark",
+   "body": [
+    "Zoho Desk chats: first response within 5 mins; resolve at first contact where possible.",
+    "Zoho Desk emails: first response within 2 hrs; escalate cases needing Ops to the relevant Ops team.",
+    "Inbound calls: answer within 15 rings.",
+    "WhatsApp: first response within 20 mins.",
+    "DingTalk (Lazada) and Lark (TikTok): as soon as received; platform SLA 24 hrs.",
+    "Tokgistic: first response within 24 hrs. Shopee escalations: 2 hrs. Lazada escalations: 48 hrs.",
+    "Post every action, escalation or operational change in the SG CS Chat."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §7.1",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 37
+  },
+  {
+   "id": "resp-quality",
+   "cat": "Responses & escalation",
+   "title": "What a complete customer reply must include",
+   "keywords": "reply template insufficient response how to reply customer tone complete answer",
+   "body": [
+    "Greet the customer and name the job (tracking number) you checked.",
+    "State the current status and what you found (e.g. driver ETA, POD, reason for delay).",
+    "Say exactly what happens next and by when (e.g. 'driver will arrive by 4.30pm', 'we will update you by 6pm').",
+    "If a fee or refund applies, state the rule and amount, and get acknowledgement before applying a fee.",
+    "Never promise a time, refund or compensation the SOP doesn't allow. Never share internal notes, agent pay or other customers' data.",
+    "Close with a clear next step or contact, and log the action in the SG CS Chat."
+   ],
+   "escalate": "Carmen to confirm house tone.",
+   "source": "Operations Master SOP 2026 §7.6",
+   "status": "draft",
+   "updated": "2026-11-11",
+   "order": 38
+  },
+  {
+   "id": "esc-matrix",
+   "cat": "Responses & escalation",
+   "title": "Escalation matrix — who to go to",
+   "keywords": "escalate escalation who to contact manager philip carmen hamyzan faiq william mabeline",
+   "body": [
+    "Level 1 — CS / Fulfilment officer: all first-line issues, within response times.",
+    "Level 2 — Philip (Fulfilment, telemedical) or Carmen (CS); Hamyzan for SGH and Tsuklio: agent MIA, outsourcing decisions, disputes, anything unresolved over 1 shift.",
+    "Level 3 — Faiq, Operations Manager: platform penalties, claims needing judgement, missed targets, high load, client complaints.",
+    "Level 4 — William Ng, COO: contract breaches, service suspension, rate changes, major incidents.",
+    "Level 4 (finance) — Mabeline Xie, CFO: claims over the agreed limit, refunds, payout disputes, write-offs."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §8.4",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 39
+  },
+  {
+   "id": "esc-owners",
+   "cat": "Responses & escalation",
+   "title": "Who owns each account",
+   "keywords": "account owner who handles telemedical sgh shopee lazada tiktok corporate",
+   "body": [
+    "Telemedical: Philip (Fulfilment: Shara, Anestasia, Rupert).",
+    "SGH and Vivance SGH: Hamyzan.",
+    "Shopee/Lazada: Faiq (Fulfilment: Ira, Ethel, Riza).",
+    "TikTok: Faiq; Senior CS Philip (assignment Ralph, Jayvee; monitoring Rupert, Patrick, Ria).",
+    "Corporate: Faiq; Hamyzan for Tsuklio, GFK, Vivance; Ira for project jobs.",
+    "Support team lead: Carmen. Warehouse: Denzel."
+   ],
+   "escalate": "",
+   "source": "Operations Master SOP 2026 §3",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 40
+  },
+  {
+   "id": "price-amend",
+   "cat": "Fees, refunds & claims",
+   "title": "Job price amendments",
+   "keywords": "price amendment amend price recalculate job price change vehicle extra stop waiting time",
+   "body": [
+    "Not yet in the knowledge base. The SOP covers late-delivery downgrades (credit the difference via job amendment) and oversized parcels (amend the order), but not the price calculation itself.",
+    "Until this section is added: do not quote an amended price to the customer until your lead has checked it."
+   ],
+   "escalate": "Carmen.",
+   "source": "Operations Master SOP 2026",
+   "status": "gap",
+   "updated": "2026-11-11",
+   "order": 41
+  },
+  {
+   "id": "web-absent",
+   "cat": "Customer requests (website)",
+   "title": "Recipient absent or parcel undelivered (customer side)",
+   "keywords": "recipient absent not home undelivered redelivery return fee perishable left at door 3 days",
+   "body": [
+    "Free re-delivery within 3 working days.",
+    "If the second attempt also fails, the parcel is returned to the sender. Return fee: the higher of $7 or 50% of the category price, plus any area surcharge.",
+    "Perishables are not re-delivered; they're left at the door with photo proof.",
+    "Agents must not leave parcels at the door without the recipient's consent (except perishables per SOP)."
+   ],
+   "escalate": "SOP says a return fee needs the merchant's prior approval, and TikTok allows 2 working days. Confirm which applies.",
+   "source": "uparcel.sg FAQ (zh/faq)",
+   "status": "needs_review",
+   "updated": "2026-11-11",
+   "order": 108
+  },
+  {
+   "id": "web-address",
+   "cat": "Customer requests (website)",
+   "title": "Changing the delivery address (customer side)",
+   "keywords": "change address wrong address delivery address new fee repost",
+   "body": [
+    "Not yet accepted: cancel and repost with the right address.",
+    "Already accepted: a new delivery fee may apply. Wrong delivery address → a new delivery fee. Address change after pickup: $3 fee (agent FAQ).",
+    "Internal rule: after acceptance, change only with the agent's agreement (SOP §7.4)."
+   ],
+   "escalate": "",
+   "source": "uparcel.sg FAQ (zh/faq)",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 107
+  },
+  {
+   "id": "web-agent-pay",
+   "cat": "Agents & accounts",
+   "title": "Agent payouts, commission and instant payout",
+   "keywords": "agent payout commission 80% 20% instant payout wallet $200 reserve blackout giro",
+   "body": [
+    "Agents keep 80% of the delivery fee; uParcel keeps 20%.",
+    "Payout by GIRO: jobs on days 1–15 paid on days 22–24; days 16–31 paid on days 7–9 of the next month.",
+    "Instant payout: wallet must stay above $200; $2–$1,000 per day; $1 fee per request; one request a day; approved next working day; not during claims, frozen accounts or blackout dates (13th–16th and 29th–1st).",
+    "New agents are limited to 7 jobs until 20+ deliveries and a 4+ rating.",
+    "Late delivery: uParcel may deduct up to 50% of the fee; repeated delays lead to deactivation."
+   ],
+   "escalate": "",
+   "source": "uparcel.sg FAQ (zh/faq)",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 116
+  },
+  {
+   "id": "web-bulk",
+   "cat": "Pricing & surcharges (website)",
+   "title": "Bulk discounts and corporate accounts",
+   "keywords": "bulk discount corporate account monthly billing fall-below fee 10 orders sub-account invoice credit",
+   "body": [
+    "Bulk discount (same pickup date, delivery date and timing), applied automatically: 5–9 orders 5% · 10–19 orders 10% · 20–29 orders 15% · 30+ orders 20%.",
+    "Corporate account: minimum 10 orders a month; otherwise a $10/month fall-below fee (none if 0 bookings).",
+    "Corporate benefits: monthly billing with 30 days' credit, invoices with PO numbers, sub-accounts, bulk upload, Favourite Fleet.",
+    "To apply: log in and choose 'Corporate Account Request', or email express@uparcel.sg. Bulk-rate enquiries: sales@uparcel.sg.",
+    "First-booking promo code: WELCOME10 (10% off)."
+   ],
+   "escalate": "",
+   "source": "uparcel.sg/rates; uparcel.sg FAQ (zh/faq)",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 102
+  },
+  {
+   "id": "web-cancel",
+   "cat": "Customer requests (website)",
+   "title": "Cancelling a booking",
+   "keywords": "cancel cancellation refund before after accepted 50% fee manpower en route",
+   "body": [
+    "Before an agent accepts ('Waiting for Acceptance'): customer can cancel for a full refund to the e-wallet.",
+    "After acceptance: contact the agent, then cancel under Manage Deliveries. If the driver is en route or it's within 30 mins of pickup, a 50% delivery fee (plus 50% of any manpower fee) applies. Corporate cancellations are billed on the monthly invoice.",
+    "Example: a $10 + $0.70 GST job cancelled with 50% fee refunds $5 + $0.35.",
+    "Wrong pickup address → 50% cancellation fee. Repeated cancellations can lead to account suspension.",
+    "An older website post says the 50% fee is capped at $10; the current FAQ doesn't mention a cap."
+   ],
+   "escalate": "Confirm with Carmen whether the $10 cap still applies before quoting it.",
+   "source": "uparcel.sg FAQ (zh/faq)",
+   "status": "needs_review",
+   "updated": "2026-11-11",
+   "order": 105
+  },
+  {
+   "id": "web-claims",
+   "cat": "Pricing & surcharges (website)",
+   "title": "Customer claim deadline and documents (website wording)",
+   "keywords": "claim deadline days lost damaged written notice documents waybill invoice receipt",
+   "body": [
+    "Customers must submit claims in writing to express@uparcel.sg with the original waybill, invoices/receipts and any proof requested. One claim per item.",
+    "T&C: written notice within 3 working days of delivery (or of discovering hidden damage), and no later than 5 calendar days after delivery. Supporting documents within 7 days of being asked.",
+    "Internal rule (SOP §8.1): claims later than 5 calendar days are rejected. Tell customers to claim as early as possible and within 3 working days.",
+    "Approved payouts: 7–30 days."
+   ],
+   "escalate": "T&C has several conflicting deadlines (48 hrs, 2 days, 3 days). Carmen to confirm the one agents should quote.",
+   "source": "uparcel.sg Terms & Conditions; uparcel.sg FAQ (zh/faq)",
+   "status": "needs_review",
+   "updated": "2026-11-11",
+   "order": 104
+  },
+  {
+   "id": "web-fleet",
+   "cat": "Customer requests (website)",
+   "title": "Favourite / blocked agents (My Fleet)",
+   "keywords": "my fleet favourite agent block agent add remove agent customer",
+   "body": [
+    "Add an agent to My Fleet by giving a positive rating and choosing 'add'. Remove under Favourite Agents → Delete.",
+    "Block an agent under Favourites → Block Agent.",
+    "Jobs go to the fleet first; if none accept within 10 minutes the job is reposted to all agents."
+   ],
+   "escalate": "",
+   "source": "uparcel.sg FAQ (zh/faq)",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 113
+  },
+  {
+   "id": "web-hours",
+   "cat": "Service levels & timings",
+   "title": "Operating and customer-service hours (website)",
+   "keywords": "operating hours customer service hours open weekend public holiday 24/7",
+   "body": [
+    "Bookings and deliveries run 24/7 including weekends and public holidays.",
+    "Website FAQ: customer service 9am–6.30pm, Monday to Sunday.",
+    "Internal shifts (SOP §7.2): AM 8.30am–5.30pm, PM 2–11pm."
+   ],
+   "escalate": "Website hours differ from internal shifts. Confirm what agents should tell customers.",
+   "source": "uparcel.sg FAQ (zh/faq)",
+   "status": "needs_review",
+   "updated": "2026-11-11",
+   "order": 115
+  },
+  {
+   "id": "web-insurance",
+   "cat": "Pricing & surcharges (website)",
+   "title": "Insurance and maximum claim amount",
+   "keywords": "insurance extra cover claim maximum how much compensation $100 lost damaged value",
+   "body": [
+    "Every delivery includes $100 basic cover.",
+    "Extra cover must be added before checkout: 1.2% (1 Hour Rush), 1.5% (Same Day / 3 Hours / 2-Way), 2% (Next Day / time slot). Extended cover is capped at $2,000 per shipment. Favourite Fleet can't be selected with extra insurance.",
+    "Without extra cover, compensation is the lower of the item's cost price or $100 per delivery order, with proof of value.",
+    "Parcels worth more than $2,000 are not accepted."
+   ],
+   "escalate": "",
+   "source": "uparcel.sg FAQ (zh/faq); uparcel.sg Terms & Conditions",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 103
+  },
+  {
+   "id": "web-noaccept",
+   "cat": "Customer requests (website)",
+   "title": "Booking not accepted — what to tell the customer",
+   "keywords": "not accepted no agent repost tip increase acceptance rate deleted end of day",
+   "body": [
+    "It means no available agent took the job. The customer can repost at a different time; unaccepted jobs are removed at the end of the day.",
+    "To improve acceptance: add a tip before payment, or to a posted job under Manage Deliveries.",
+    "Internally, CS still follows the Pending Acceptance SOP (top-ups, Lalamove) for priority accounts."
+   ],
+   "escalate": "",
+   "source": "uparcel.sg FAQ (zh/faq)",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 106
+  },
+  {
+   "id": "web-payment",
+   "cat": "Payments & e-wallet (website)",
+   "title": "Payment methods, top-ups and refunds",
+   "keywords": "payment method credit card e-wallet top up bank transfer sgqr giro refund 3.5% withdraw $2 fee expire 12 months gst",
+   "body": [
+    "E-wallet (minimum top-up $50), bank transfer, SGQR, or monthly billing for corporate accounts. No cash.",
+    "One-off card (Stripe) payments: 3.5% + $0.25 fee, non-refundable.",
+    "Top-up timing: card instant; bank transfer / SGQR at least 1 working day; GIRO up to 3 working days.",
+    "Cancelled credits go to the e-wallet. Card refund on request to express@uparcel.sg; takes 14 working days.",
+    "Withdrawing e-wallet balance to a bank: $2 fee. E-wallet credits expire 12 months after top-up; no refund on expiry.",
+    "uParcel is GST-registered; GST applies to the platform commission (20% of the delivery fee)."
+   ],
+   "escalate": "",
+   "source": "uparcel.sg FAQ (zh/faq); uparcel.sg Terms & Conditions",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 111
+  },
+  {
+   "id": "web-pickup-window",
+   "cat": "Service levels & timings",
+   "title": "Minimum pickup window by service (customer side)",
+   "keywords": "pickup window time frame interval 4 hours 3 hours 1 hour how long",
+   "body": [
+    "Same Day, Next Day, 2-Way Round Trip and Specific Slot: pickup window of at least 4 hrs.",
+    "3 Hours Express: at least 3 hrs. 1 Hour Rush: at least 1 hr.",
+    "Agents can't change the time with the customer; they must not accept jobs they can't complete on time."
+   ],
+   "escalate": "",
+   "source": "uparcel.sg FAQ (zh/faq)",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 110
+  },
+  {
+   "id": "web-prohibited",
+   "cat": "Customer requests (website)",
+   "title": "Prohibited items and packing",
+   "keywords": "prohibited items what can i send explosives firearms drugs cash passport live animals pack packing fragile",
+   "body": [
+    "Not accepted: explosives, firearms, drugs, flammable/hazardous materials, live animals, cash and cards, passports/government IDs, original documents without copies, parcels worth over $2,000.",
+    "Senders must pack and seal items securely; mark fragile items and use bubble wrap.",
+    "Need a delivery order (DO) returned? Book a 2-Way Round Trip or include a pre-stamped return envelope."
+   ],
+   "escalate": "",
+   "source": "uparcel.sg Terms & Conditions; uparcel.sg FAQ (zh/faq)",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 114
+  },
+  {
+   "id": "web-rates",
+   "cat": "Pricing & surcharges (website)",
+   "title": "Published flat rates by weight and size",
+   "keywords": "price rate how much cost weight size kg cm flat rate published 1kg 5kg 25kg",
+   "body": [
+    "Published flat rates (SGD, before GST): 1 kg / 60 cm $22 · 5 kg / 80 cm $24 · 8 kg / 100 cm $26 · 10 kg / 120 cm $28 · 15 kg / 140 cm $30 · 20 kg / 160 cm $33 · 25 kg / 200 cm $36.",
+    "Size is L + W + H. Rates include ERP, tolls and parking.",
+    "A temporary $1 fuel surcharge applies on all published delivery rates.",
+    "The website does not say which service type this table is for. Confirm the exact price in the booking app before quoting."
+   ],
+   "escalate": "",
+   "source": "uparcel.sg/rates",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 100
+  },
+  {
+   "id": "web-surcharges",
+   "cat": "Pricing & surcharges (website)",
+   "title": "Area, distance, night and waiting-time surcharges",
+   "keywords": "surcharge cbd city tuas sentosa changi airport airline house distance 18km night waiting time per minute postal code",
+   "body": [
+    "City area (CBD, Orchard, Downtown — postal codes 01–08, 17–19, 22–23): $2.",
+    "Tuas (postal codes 627, 628, 629, 638, 639): $4.",
+    "Entry fee — Sentosa, Changi Airport, Changi Aviation Centre, Tuas South 636/637: $10 (Sentosa entry fee also payable).",
+    "Changi Airline House: $15.",
+    "Distance over 18 km (pickup to drop-off): $3 (plus a $1 long-distance increase).",
+    "Night delivery (bookings 11pm–7am; only 1 Hour Rush available): $15.",
+    "Waiting time after the first 10 minutes: $0.40 per minute."
+   ],
+   "escalate": "",
+   "source": "uparcel.sg/rates",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 101
+  },
+  {
+   "id": "web-tracking",
+   "cat": "Customer requests (website)",
+   "title": "Tracking, proof of delivery, receipts and records",
+   "keywords": "track tracking number sms link proof delivered receipt invoice waybill print history report saved 60 days",
+   "body": [
+    "Every job has a tracking number; customers can track at uparcel.sg/track or via the SMS tracking link.",
+    "Customer gets phone and email notification on delivery, with recipient name, signature and time.",
+    "Receipt is emailed after delivery. Waybill: Manage Deliveries → Print Waybill.",
+    "Orders are saved for 60 days (e.g. posted 1 Apr, viewable until 31 May)."
+   ],
+   "escalate": "",
+   "source": "uparcel.sg FAQ (zh/faq)",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 112
+  },
+  {
+   "id": "web-underdeclared",
+   "cat": "Customer requests (website)",
+   "title": "Under-declared or oversized parcels (customer side)",
+   "keywords": "under-declared oversized too big heavier refuse 50% refund maximum size 25kg 200cm",
+   "body": [
+    "Maximum size: under 200 cm (L + W + H) and 25 kg. Larger items should be split into two parcels and booked to the same address (bulk discount applies).",
+    "If a parcel is under-declared, the agent may refuse it. If refused, the customer gets a 50% refund of the original fee.",
+    "Agent may instead deliver with the sender's written approval and upload a weight/size photo; the extra charge is then applied."
+   ],
+   "escalate": "",
+   "source": "uparcel.sg FAQ (zh/faq)",
+   "status": "verified",
+   "updated": "2026-11-11",
+   "order": 109
+  }
+ ],
+ "playbooks": [
+  {
+   "id": "pb-pending",
+   "title": "Job not accepted (Pending Acceptance)",
+   "summary": "No driver has taken the job and the pickup window is running out.",
+   "start": "n1",
+   "nodes": {
+    "n1": {
+     "q": "Which account is the job for?",
+     "opts": [
+      {
+       "label": "SGH / Vivance SGH",
+       "next": "sgh"
+      },
+      {
+       "label": "TikTok",
+       "next": "n2tt"
+      },
+      {
+       "label": "Telemedical",
+       "next": "tele"
+      },
+      {
+       "label": "Shopee / Lazada / other",
+       "next": "n2"
+      }
+     ]
+    },
+    "sgh": {
+     "end": [
+      "Do not outsource or move it.",
+      "Refer the job to Hamyzan immediately.",
+      "Post the action in the SG CS Chat."
+     ],
+     "esc": "Hamyzan → Faiq",
+     "ref": "acc-sgh"
+    },
+    "n2tt": {
+     "q": "Has the outsourcing deadline passed? (afternoon 5pm / evening 7pm)",
+     "opts": [
+      {
+       "label": "No",
+       "next": "tt_early"
+      },
+      {
+       "label": "Yes or about to",
+       "next": "tt_late"
+      }
+     ]
+    },
+    "tt_early": {
+     "end": [
+      "Give it to an agent already heading to the same cluster, zone, postal sector or same seller.",
+      "Top up from $1 in steps against the Lalamove price.",
+      "Never move a TikTok job to the next day."
+     ],
+     "ref": "acc-tiktok"
+    },
+    "tt_late": {
+     "end": [
+      "Outsource now via the Lalamove API in the Admin portal.",
+      "Target: zero Pending Acceptance by 6pm (afternoon) / 7.30pm (evening).",
+      "Close the Lalamove job as delivered the same day."
+     ],
+     "esc": "Faiq approves afternoon outsourcing; Senior CS evening",
+     "ref": "pa-lalamove"
+    },
+    "tele": {
+     "end": [
+      "Top up in $2 steps after auto top-up.",
+      "Night: top up until it matches the outsource cost by 8.30pm.",
+      "8.25pm: match the Lalamove price for 5–10 mins, notify, push to Urgent; still no taker → Lalamove.",
+      "Minmed not accepted by 8.30pm → Lalamove. Never move medical jobs."
+     ],
+     "esc": "Philip",
+     "ref": "acc-tele"
+    },
+    "n2": {
+     "q": "Is the job movable? (Not bakes/cakes/cooked food, not urgent, not a priority seller)",
+     "opts": [
+      {
+       "label": "Movable",
+       "next": "mov"
+      },
+      {
+       "label": "Non-movable",
+       "next": "nonmov"
+      }
+     ]
+    },
+    "mov": {
+     "end": [
+      "Call drivers en route / use Find a Driver.",
+      "Top up in steps if the customer is a priority account (none for low-priority customers).",
+      "Still unaccepted at the cut-off (11.45am AM / 4.30–5pm PM): move it to the next slot or day.",
+      "Call the buyer, update the seller, log it in the Move-over file."
+     ],
+     "ref": "pa-moveover"
+    },
+    "nonmov": {
+     "end": [
+      "From 11am match the Lalamove price every 10 mins.",
+      "Match Lalamove for 10 mins, send notification, push to Urgent.",
+      "Still no taker by 11.45am (AM) / 4.30pm (PM): outsource via the Lalamove API.",
+      "Close the Lalamove job the same day."
+     ],
+     "esc": "Philip for outsourcing decisions",
+     "ref": "pa-lalamove"
+    }
+   },
+   "order": 0
+  },
+  {
+   "id": "pb-latepickup",
+   "title": "Agent late for pickup or not responding",
+   "summary": "Job is accepted but the agent hasn't arrived and the window is nearly over.",
+   "start": "n1",
+   "nodes": {
+    "n1": {
+     "q": "Is the agent a rookie (not subcon, fleet, Gold or Platinum)?",
+     "opts": [
+      {
+       "label": "Yes, rookie",
+       "next": "n2"
+      },
+      {
+       "label": "No — subcon / fleet / Gold / Platinum",
+       "next": "senior"
+      }
+     ]
+    },
+    "senior": {
+     "end": [
+      "These agents are skipped on the At Risk check.",
+      "If the customer is chasing, WhatsApp the agent for an ETA and update the customer.",
+      "Agent MIA → escalate to Philip."
+     ],
+     "esc": "Philip",
+     "ref": "mon-atrisk"
+    },
+    "n2": {
+     "q": "Does the agent reply with a realistic ETA?",
+     "opts": [
+      {
+       "label": "Yes",
+       "next": "eta"
+      },
+      {
+       "label": "No reply / GPS far from pickup",
+       "next": "mia"
+      }
+     ]
+    },
+    "eta": {
+     "end": [
+      "Mark the job checked on the At Risk Dashboard with the ETA as the reason.",
+      "Post the ETA in Cliq.",
+      "Update the customer with the ETA."
+     ],
+     "ref": "mon-puip"
+    },
+    "mia": {
+     "q": "Is the job movable?",
+     "opts": [
+      {
+       "label": "Movable",
+       "next": "mia_mov"
+      },
+      {
+       "label": "Non-movable / medical / TikTok",
+       "next": "mia_non"
+      }
+     ]
+    },
+    "mia_mov": {
+     "end": [
+      "Block / remove the agent.",
+      "Ask the seller to push the pickup time, or move to the next slot.",
+      "Call the buyer and log it in the Move-over file."
+     ],
+     "ref": "mon-atrisk"
+    },
+    "mia_non": {
+     "end": [
+      "Remove the agent.",
+      "Outsource via the Lalamove API (never SGH — refer to Hamyzan).",
+      "Update the customer with the new ETA."
+     ],
+     "esc": "Philip",
+     "ref": "pa-lalamove"
+    }
+   },
+   "order": 1
+  },
+  {
+   "id": "pb-latedelivery",
+   "title": "Delivery running late",
+   "summary": "Item is picked up but delivery is over the timeslot or the customer is chasing.",
+   "start": "n1",
+   "nodes": {
+    "n1": {
+     "q": "How late is it?",
+     "opts": [
+      {
+       "label": "Less than 30 mins over",
+       "next": "minor"
+      },
+      {
+       "label": "30+ mins over",
+       "next": "n2"
+      }
+     ]
+    },
+    "minor": {
+     "end": [
+      "Track the agent on the dashboard.",
+      "Warn the buyer before they chase, with an ETA."
+     ],
+     "ref": "mon-latecheck"
+    },
+    "n2": {
+     "q": "Does the agent reply on WhatsApp?",
+     "opts": [
+      {
+       "label": "Yes, with ETA",
+       "next": "ok"
+      },
+      {
+       "label": "No reply",
+       "next": "noreply"
+      }
+     ]
+    },
+    "ok": {
+     "end": [
+      "Update the customer with the ETA.",
+      "Mark checked on the At Risk Dashboard.",
+      "If delivered well outside the service level, apply the late-delivery downgrade (see Late delivery partial refund)."
+     ],
+     "ref": "fee-late"
+    },
+    "noreply": {
+     "end": [
+      "Flag it in the group chat.",
+      "Escalate agent MIA to Philip.",
+      "Keep the customer updated; don't promise a time you can't confirm."
+     ],
+     "esc": "Philip",
+     "ref": "mon-atrisk"
+    }
+   },
+   "order": 2
+  },
+  {
+   "id": "pb-failed",
+   "title": "Delivery failed — recipient not reachable",
+   "summary": "Agent is at the address but can't hand over the item.",
+   "start": "n1",
+   "nodes": {
+    "n1": {
+     "q": "What is the item?",
+     "opts": [
+      {
+       "label": "Medical / SGH",
+       "next": "med"
+      },
+      {
+       "label": "Perishable",
+       "next": "per"
+      },
+      {
+       "label": "Non-perishable",
+       "next": "nonper"
+      }
+     ]
+    },
+    "med": {
+     "end": [
+      "Never leave it unattended without the PIN.",
+      "SGH cold chain: release the PIN only after a photo showing an identifiable recipient. Hand over in person only; undeliverable → return to HQ.",
+      "If the customer hasn't advised how to receive it, return to sender."
+     ],
+     "esc": "Hamyzan (SGH) / Philip (telemedical)",
+     "ref": "acc-sgh"
+    },
+    "per": {
+     "end": [
+      "Agent calls the customer and keeps the call log.",
+      "Leave in a safe spot and take all 3 PODs.",
+      "Send the photo to the customer; note where it was left in the remarks."
+     ],
+     "ref": "fd-noone"
+    },
+    "nonper": {
+     "q": "Can the location be accessed?",
+     "opts": [
+      {
+       "label": "Yes, just nobody home",
+       "next": "nonper_home"
+      },
+      {
+       "label": "No / restricted area",
+       "next": "noaccess"
+      }
+     ]
+    },
+    "nonper_home": {
+     "end": [
+      "Agent calls the customer and keeps the call log.",
+      "Arrange a re-attempt (TikTok: one re-attempt within 2 working days).",
+      "Still failing → mark Undelivered with POD and call log, then return to sender."
+     ],
+     "ref": "fd-noaccess"
+    },
+    "noaccess": {
+     "end": [
+      "Mark Undelivered with photo proof and call log.",
+      "Return the item the next working day; mark Returned with photo proof.",
+      "Inform the sender."
+     ],
+     "ref": "fd-noaccess"
+    }
+   },
+   "order": 3
+  },
+  {
+   "id": "pb-failedpickup",
+   "title": "Failed pickup at seller",
+   "summary": "Agent arrived but the seller is closed, the item isn't ready, or it's under-declared.",
+   "start": "n1",
+   "nodes": {
+    "n1": {
+     "q": "What happened?",
+     "opts": [
+      {
+       "label": "Seller closed / nobody present",
+       "next": "closed"
+      },
+      {
+       "label": "Item not ready / can't be found",
+       "next": "notready"
+      },
+      {
+       "label": "Item under-declared (bigger/heavier)",
+       "next": "under"
+      }
+     ]
+    },
+    "closed": {
+     "end": [
+      "Agent calls the seller and CS; keeps call log and photo.",
+      "Cancel with reason 'Arrived but seller closed', proof attached as POD.",
+      "50% cancellation fee applies — customer acknowledges first."
+     ],
+     "ref": "fd-sellerclosed"
+    },
+    "notready": {
+     "end": [
+      "Agent calls the seller and CS.",
+      "TikTok: allow 10 mins for packing; over 15 mins waiting counts as failed pickup.",
+      "Cancel with reason 'Parcel not ready' with photo and call log; 50% fee applies after customer acknowledges."
+     ],
+     "ref": "fd-sellerclosed"
+    },
+    "under": {
+     "end": [
+      "Agent contacts CS and takes a photo of the item.",
+      "Cancel with reason 'Parcel under-declared'. TikTok: raise over/under-declared to TikTok at once.",
+      "50% fee applies — customer acknowledges first."
+     ],
+     "ref": "fd-sellerclosed"
+    }
+   },
+   "order": 4
+  },
+  {
+   "id": "pb-claim",
+   "title": "Customer reports damaged or missing item",
+   "summary": "A claim for damage, loss or late perishable.",
+   "start": "n1",
+   "nodes": {
+    "n1": {
+     "q": "Was the claim received within 5 calendar days of delivery?",
+     "opts": [
+      {
+       "label": "Yes",
+       "next": "n2"
+      },
+      {
+       "label": "No",
+       "next": "late"
+      }
+     ]
+    },
+    "late": {
+     "end": [
+      "Reject — claims after 5 calendar days are a contract breach.",
+      "Reply politely with the rule; log it in the Claims file anyway."
+     ],
+     "ref": "claim-procedure"
+    },
+    "n2": {
+     "end": [
+      "Log it in the Claims file and withhold the agent's pay.",
+      "Admin Panel > User > Agent: 'Have Claims?' = Yes.",
+      "Check POD, GPS, call logs, message logs. 2+ valid → reject and release pay; 1 or fewer → accept.",
+      "Late and damaged → accept (unless frozen and delivered within 5 hrs of pickup).",
+      "Valid: get the claim form with proof of refund; send to Finance and Shopee CS. uParcel never pays sellers directly."
+     ],
+     "esc": "Unclear → Faiq or Carmen; over limit → CFO",
+     "ref": "claim-procedure"
+    }
+   },
+   "order": 5
+  },
+  {
+   "id": "pb-change",
+   "title": "Customer wants to change date or address",
+   "summary": "Reschedule or redirect an existing job.",
+   "start": "n1",
+   "nodes": {
+    "n1": {
+     "q": "Has an agent already accepted the job?",
+     "opts": [
+      {
+       "label": "No",
+       "next": "before"
+      },
+      {
+       "label": "Yes",
+       "next": "after"
+      }
+     ]
+    },
+    "before": {
+     "end": [
+      "Change the date or address on the Admin portal.",
+      "Date change: update the Moveover file.",
+      "Shopee reschedule ≥1 day: log in Move-over sheet; counts as a first attempt."
+     ],
+     "ref": "req-changes"
+    },
+    "after": {
+     "end": [
+      "Address: change only with the agent's agreement.",
+      "Shopee already accepted: not rescheduled — advise the seller to decline the buyer's request.",
+      "TikTok / SGH / medical jobs are never moved."
+     ],
+     "ref": "acc-shopee-requests"
+    }
+   },
+   "order": 6
+  }
+ ],
+ "checklist": [
+  {
+   "id": "support",
+   "title": "Support shift",
+   "items": [
+    {
+     "time": "8.25am / 1.55pm",
+     "task": "Tools ready: Zoho Desk, phone extension, WhatsApp, DingTalk, Lark, Tokgistic"
+    },
+    {
+     "time": "Shift start",
+     "task": "Clear unanswered WhatsApp and open Tokgistic / DingTalk / Lark items"
+    },
+    {
+     "time": "All shift",
+     "task": "Chats answered within 5 mins, emails within 2 hrs, calls within 15 rings, WhatsApp within 20 mins"
+    },
+    {
+     "time": "Daily",
+     "task": "Approve agent and Partner Fleet registrations (S/T NRIC only); message incomplete applicants"
+    },
+    {
+     "time": "Daily",
+     "task": "Work claims: log in the right file, set 'Have Claims?' on the agent"
+    },
+    {
+     "time": "Daily",
+     "task": "Tokgistic tickets within deadline (24 hrs / 2 / 5 working days)"
+    },
+    {
+     "time": "By shift end",
+     "task": "Check oversized-parcel photos; amend orders"
+    },
+    {
+     "time": "All shift",
+     "task": "Post every action and escalation in the SG CS Chat"
+    },
+    {
+     "time": "End of shift",
+     "task": "Access Correction, Reverted and Moveover files updated"
+    }
+   ],
+   "order": 0
+  },
+  {
+   "id": "monitoring",
+   "title": "Delivery monitoring",
+   "items": [
+    {
+     "time": "8.30am",
+     "task": "Clear expired jobs, open Lalamove jobs, undelivered / item-picked jobs from the last 5 days"
+    },
+    {
+     "time": "9–10am",
+     "task": "Identify moved-over jobs and clear them first"
+    },
+    {
+     "time": "From 10am, hourly",
+     "task": "At Risk Dashboard: PUIP and Item Picked Up jobs (rookie agents)"
+    },
+    {
+     "time": "11.15am",
+     "task": "Shopee/Lazada AM late pickups"
+    },
+    {
+     "time": "11.30am",
+     "task": "PUIP with ETAs posted in Cliq; remove no-answer / far agents"
+    },
+    {
+     "time": "11.45am",
+     "task": "Move movable AM jobs to PM; outsource non-movables. No jobs expired after 12pm"
+    },
+    {
+     "time": "2.30pm",
+     "task": "Shopee/Lazada AM late deliveries"
+    },
+    {
+     "time": "4pm",
+     "task": "Shopee/Lazada PM late pickups"
+    },
+    {
+     "time": "4.30–5pm",
+     "task": "Outsource non-movables; zero Shopee/Lazada Pending Acceptance by 5pm"
+    },
+    {
+     "time": "6pm",
+     "task": "TikTok afternoon PUIP check; zero afternoon Pending Acceptance"
+    },
+    {
+     "time": "7.30pm",
+     "task": "TikTok evening PUIP check; Shopee/Lazada PM late deliveries"
+    },
+    {
+     "time": "8.30pm",
+     "task": "Telemedical: Minmed not accepted → Lalamove"
+    },
+    {
+     "time": "9.45–11pm",
+     "task": "Close all Lalamove and LLM jobs and any open jobs"
+    },
+    {
+     "time": "End of day",
+     "task": "Update the Move-over and Reverted files"
+    }
+   ],
+   "order": 1
+  }
+ ],
+ "quiz": [
+  {
+   "id": "q01",
+   "q": "A Shopee customer's claim email arrives 7 days after delivery. What do you do?",
+   "opts": [
+    "Investigate as normal",
+    "Reject it: claims must arrive within 5 calendar days",
+    "Escalate to the CFO",
+    "Pay the seller directly"
+   ],
+   "ans": 1,
+   "ref": "claim-procedure",
+   "order": 0
+  },
+  {
+   "id": "q02",
+   "q": "An SGH job is still in Pending Acceptance at 4.30pm. What is the correct action?",
+   "opts": [
+    "Outsource to Lalamove",
+    "Move it to tomorrow",
+    "Refer it to Hamyzan; never outsource SGH",
+    "Top up $8"
+   ],
+   "ans": 2,
+   "ref": "acc-sgh",
+   "order": 1
+  },
+  {
+   "id": "q03",
+   "q": "During a claim investigation, POD and GPS are valid but there are no call or message logs. Decision?",
+   "opts": [
+    "Accept the claim",
+    "Reject the claim (2 or more valid)",
+    "Escalate to COO",
+    "Ask the seller to decide"
+   ],
+   "ans": 1,
+   "ref": "claim-procedure",
+   "order": 2
+  },
+  {
+   "id": "q04",
+   "q": "A TikTok afternoon job has no driver at 5.15pm. What should have happened?",
+   "opts": [
+    "Move it to the next day",
+    "It should already be outsourced (deadline 5pm)",
+    "Wait until 7pm",
+    "Cancel it"
+   ],
+   "ans": 1,
+   "ref": "pa-deadlines",
+   "order": 3
+  },
+  {
+   "id": "q05",
+   "q": "What is the WhatsApp first-response standard?",
+   "opts": [
+    "5 mins",
+    "20 mins",
+    "2 hrs",
+    "24 hrs"
+   ],
+   "ans": 1,
+   "ref": "resp-standards",
+   "order": 4
+  },
+  {
+   "id": "q06",
+   "q": "A low-priority customer asks for a faster pickup. What do you offer?",
+   "opts": [
+    "$8 top-up",
+    "Outsource to Lalamove",
+    "Suggest adding a tip or rebooking",
+    "Upgrade to 1-hr rush for free"
+   ],
+   "ans": 2,
+   "ref": "req-faster",
+   "order": 5
+  },
+  {
+   "id": "q07",
+   "q": "A 3-hr Express job was delivered 5 hrs after pickup. What is the refund rule?",
+   "opts": [
+    "Full refund",
+    "Downgrade to Same Day, credit the difference to the e-wallet via job amendment",
+    "No refund",
+    "50% refund"
+   ],
+   "ans": 1,
+   "ref": "fee-late",
+   "order": 6
+  },
+  {
+   "id": "q08",
+   "q": "Which agents do you skip on the At Risk Dashboard check?",
+   "opts": [
+    "Rookie agents",
+    "Subcons, fleet, Gold and Platinum agents",
+    "All freelance agents",
+    "None"
+   ],
+   "ans": 1,
+   "ref": "mon-atrisk",
+   "order": 7
+  },
+  {
+   "id": "q09",
+   "q": "An agent arrived but the seller's item wasn't ready. Which fee may apply?",
+   "opts": [
+    "Return fee",
+    "50% cancellation fee, after the customer acknowledges it",
+    "Full job price",
+    "No fee ever"
+   ],
+   "ans": 1,
+   "ref": "fee-rules",
+   "order": 8
+  },
+  {
+   "id": "q10",
+   "q": "A job was picked up from 6 Defu South St 1 #05-24 and is about to expire. What do you do?",
+   "opts": [
+    "Cancel it",
+    "Flag it at once to Ops, Fulfilment or Denzel — never cancel a warehouse job",
+    "Move to tomorrow",
+    "Ignore — it's a customer job"
+   ],
+   "ans": 1,
+   "ref": "pa-warehouse",
+   "order": 9
+  },
+  {
+   "id": "q11",
+   "q": "When can you release an SGH cold-chain PIN?",
+   "opts": [
+    "When the agent asks",
+    "After the agent sends a photo showing an identifiable recipient",
+    "After 15 mins wait",
+    "Never"
+   ],
+   "ans": 1,
+   "ref": "acc-sgh",
+   "order": 10
+  },
+  {
+   "id": "q12",
+   "q": "Before outsourcing to Lalamove, what must you do?",
+   "opts": [
+    "Nothing",
+    "Check in-house drivers, then match the Lalamove price for 10 mins, notify and push to Urgent",
+    "Ask the customer to pay extra",
+    "Cancel and repost"
+   ],
+   "ans": 1,
+   "ref": "pa-lalamove",
+   "order": 11
+  },
+  {
+   "id": "q13",
+   "q": "What is the maximum top-up for an urgent same-day Shopee cake order?",
+   "opts": [
+    "$2",
+    "$5",
+    "$8",
+    "No limit"
+   ],
+   "ans": 2,
+   "ref": "pa-topup",
+   "order": 12
+  },
+  {
+   "id": "q14",
+   "q": "A customer asks to change the delivery address after an agent accepted. What is the rule?",
+   "opts": [
+    "Change it freely",
+    "Only with the agent's agreement",
+    "Never possible",
+    "Cancel and rebook"
+   ],
+   "ans": 1,
+   "ref": "req-changes",
+   "order": 13
+  },
+  {
+   "id": "q15",
+   "q": "Which NRICs can be approved for new agents?",
+   "opts": [
+    "Any",
+    "Only those starting with S or T",
+    "Only F or G",
+    "Only S"
+   ],
+   "ans": 1,
+   "ref": "agent-approval",
+   "order": 14
+  },
+  {
+   "id": "q16",
+   "q": "A TikTok delivery was picked up at 6.30pm. By when must it be delivered?",
+   "opts": [
+    "8.30pm",
+    "10.30pm (4 hrs from pickup)",
+    "11pm",
+    "Next morning"
+   ],
+   "ans": 1,
+   "ref": "acc-tiktok",
+   "order": 15
+  },
+  {
+   "id": "q17",
+   "q": "A customer asks the surcharge for a delivery to Sentosa. What do you tell them?",
+   "opts": [
+    "$2",
+    "$4",
+    "$10 entry fee (plus the Sentosa entry fee)",
+    "No surcharge"
+   ],
+   "ans": 2,
+   "ref": "web-surcharges",
+   "order": 16
+  },
+  {
+   "id": "q18",
+   "q": "What is the maximum compensation without extra insurance?",
+   "opts": [
+    "Full item value",
+    "Lower of cost price or $100 per delivery order",
+    "$500",
+    "$2,000"
+   ],
+   "ans": 1,
+   "ref": "web-insurance",
+   "order": 17
+  },
+  {
+   "id": "q19",
+   "q": "A customer wants to cancel a job still 'Waiting for Acceptance'. What happens?",
+   "opts": [
+    "50% fee",
+    "Full refund to the e-wallet",
+    "Not allowed",
+    "$10 fee"
+   ],
+   "ans": 1,
+   "ref": "web-cancel",
+   "order": 18
+  }
+ ],
+ "meta": [
+  {
+   "lastRefreshed": "2026-11-11T12:00:00+08:00",
+   "sources": [
+    "Operations Master SOP 2026"
+   ],
+   "note": "Built from WorkDrive SOPs. Price amendments not yet covered."
+  }
+ ]
+}

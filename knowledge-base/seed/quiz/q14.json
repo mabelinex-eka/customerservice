@@ -1,0 +1,1 @@
+{"id": "q14", "q": "A customer asks to change the delivery address after an agent accepted. What is the rule?", "opts": ["Change it freely", "Only with the agent's agreement", "Never possible", "Cancel and rebook"], "ans": 1, "ref": "req-changes", "order": 13}

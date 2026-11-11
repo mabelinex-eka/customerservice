@@ -1,0 +1,1 @@
+{"id": "q10", "q": "A job was picked up from 6 Defu South St 1 #05-24 and is about to expire. What do you do?", "opts": ["Cancel it", "Flag it at once to Ops, Fulfilment or Denzel — never cancel a warehouse job", "Move to tomorrow", "Ignore — it's a customer job"], "ans": 1, "ref": "pa-warehouse", "order": 9}

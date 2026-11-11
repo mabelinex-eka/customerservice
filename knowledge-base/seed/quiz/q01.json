@@ -1,0 +1,1 @@
+{"id": "q01", "q": "A Shopee customer's claim email arrives 7 days after delivery. What do you do?", "opts": ["Investigate as normal", "Reject it: claims must arrive within 5 calendar days", "Escalate to the CFO", "Pay the seller directly"], "ans": 1, "ref": "claim-procedure", "order": 0}

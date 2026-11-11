@@ -1,0 +1,1 @@
+{"id": "q19", "q": "A customer wants to cancel a job still 'Waiting for Acceptance'. What happens?", "opts": ["50% fee", "Full refund to the e-wallet", "Not allowed", "$10 fee"], "ans": 1, "ref": "web-cancel", "order": 18}

@@ -1,0 +1,1 @@
+{"id": "q03", "q": "During a claim investigation, POD and GPS are valid but there are no call or message logs. Decision?", "opts": ["Accept the claim", "Reject the claim (2 or more valid)", "Escalate to COO", "Ask the seller to decide"], "ans": 1, "ref": "claim-procedure", "order": 2}

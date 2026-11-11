@@ -1,0 +1,1 @@
+{"id": "q07", "q": "A 3-hr Express job was delivered 5 hrs after pickup. What is the refund rule?", "opts": ["Full refund", "Downgrade to Same Day, credit the difference to the e-wallet via job amendment", "No refund", "50% refund"], "ans": 1, "ref": "fee-late", "order": 6}

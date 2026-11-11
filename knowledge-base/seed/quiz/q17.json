@@ -1,0 +1,1 @@
+{"id": "q17", "q": "A customer asks the surcharge for a delivery to Sentosa. What do you tell them?", "opts": ["$2", "$4", "$10 entry fee (plus the Sentosa entry fee)", "No surcharge"], "ans": 2, "ref": "web-surcharges", "order": 16}
