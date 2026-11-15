@@ -5,15 +5,15 @@ export class ClaudeError extends Error {
 }
 
 /** Calls the Claude Messages API and parses a JSON object from the reply. */
-export async function askClaudeJson<T>(system: string, user: string): Promise<T> {
+export async function askClaudeJson<T>(system: string, user: string, maxTokens = 1800): Promise<T> {
   const key = process.env.ANTHROPIC_API_KEY;
   if (!key) throw new ClaudeError("The AI answer service isn't set up yet (ANTHROPIC_API_KEY missing).", 503);
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
+  const res = await fetch((process.env.ANTHROPIC_BASE_URL || "https://api.anthropic.com") + "/v1/messages", {
     method: "POST",
     headers: { "content-type": "application/json", "x-api-key": key, "anthropic-version": "2023-06-01" },
     body: JSON.stringify({
-      model: process.env.ANTHROPIC_MODEL || "claude-sonnet-4-5",
-      max_tokens: 1800,
+      model: process.env.ANTHROPIC_MODEL || "claude-sonnet-5-5",
+      max_tokens: maxTokens,
       system,
       messages: [{ role: "user", content: user }],
     }),

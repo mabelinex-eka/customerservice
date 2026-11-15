@@ -40,6 +40,7 @@ function client() {
 export type Suggestion = { data: Record<string, unknown>; reason: string; by: string; at: string };
 export type KbItem<T = Record<string, unknown>> = {
   id: string; data: T; version: number; updatedAt: string; updatedBy: string; humanEdited: boolean; suggestion?: Suggestion;
+  proposedNew?: boolean;
 };
 
 const key = (pk: string, sk: string) => ({ [PK]: pk, [SK]: sk });
@@ -71,6 +72,7 @@ function toItem<T = Record<string, unknown>>(raw: Record<string, unknown>): KbIt
     id: String(raw[SK]), data: raw.data as T, version: Number(raw.version ?? 1),
     updatedAt: String(raw.updatedAt ?? ""), updatedBy: String(raw.updatedBy ?? ""),
     humanEdited: !!raw.humanEdited, suggestion: raw.suggestion as Suggestion | undefined,
+    ...(raw.proposedNew ? { proposedNew: true } : {}),
   };
 }
 
@@ -227,4 +229,49 @@ export async function resolveFeedback(sk: string, by: string) {
     ConditionExpression: "attribute_exists(#pk)", ExpressionAttributeNames: { "#s": "status", "#pk": PK },
     ExpressionAttributeValues: { ":r": "resolved", ":b": by },
   }));
+}
+
+/* -------------------- suggestions (SOP check) --------------------- */
+
+/**
+ * Stores a proposed change for a lead to accept or reject; never changes the
+ * live entry. For an id that doesn't exist yet, creates a hidden placeholder
+ * (status "retired") carrying the proposed new entry as its suggestion.
+ */
+export async function suggestItem(c: Collection, id: string, data: Record<string, unknown>, reason: string, by: string) {
+  const at = nowIso();
+  const suggestion: Suggestion = { data, reason, by, at };
+  const current = await getItem(c, id);
+  if (current) {
+    await client().send(new UpdateCommand({
+      TableName: TABLE, Key: key("KB#" + c, id),
+      UpdateExpression: "SET suggestion = :s, version = version + :one",
+      ConditionExpression: "attribute_exists(#pk)", ExpressionAttributeNames: { "#pk": PK },
+      ExpressionAttributeValues: { ":s": suggestion, ":one": 1 },
+    }));
+    await log({ collection: c, id, action: "suggest", by, before: current.data, after: data, note: reason });
+    return "updated" as const;
+  }
+  const placeholder = { ...data, status: "retired" };
+  try {
+    await client().send(new PutCommand({
+      TableName: TABLE, ConditionExpression: "attribute_not_exists(#pk)", ExpressionAttributeNames: { "#pk": PK },
+      Item: { ...key("KB#" + c, id), data: placeholder, version: 1, updatedAt: at, updatedBy: by, humanEdited: false, proposedNew: true, suggestion },
+    }));
+  } catch (e) {
+    if ((e as { name?: string })?.name === "ConditionalCheckFailedException") return suggestItem(c, id, data, reason, by);
+    throw e;
+  }
+  await log({ collection: c, id, action: "suggest-new", by, after: data, note: reason });
+  return "new" as const;
+}
+
+/* ----------------------------- config ----------------------------- */
+// Server-only settings (e.g. the Zoho refresh token). Never sent to the browser.
+export async function getConfig<T = Record<string, unknown>>(name: string): Promise<T | null> {
+  const r = await client().send(new GetCommand({ TableName: TABLE, Key: key("CONFIG", name) }));
+  return (r.Item?.value as T) ?? null;
+}
+export async function setConfig(name: string, value: Record<string, unknown>) {
+  await client().send(new PutCommand({ TableName: TABLE, Item: { ...key("CONFIG", name), value, updatedAt: nowIso() } }));
 }

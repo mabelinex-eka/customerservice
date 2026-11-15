@@ -9,7 +9,8 @@ On first start with an empty table, the app imports `../knowledge-base/knowledge
 | Who | Where | Rule |
 |---|---|---|
 | Team leads | `/editor` (name + `EDITOR_PASSWORD`) | Edit, create or retire SOP entries. Saves are live immediately and marked as human-edited. |
-| Nightly refresh | `PUT /api/admin/item` with `mode: "refresh"` | Updates untouched entries. For human-edited entries it stores a **suggestion** that a lead accepts or rejects in the editor. |
+| Team leads | "Check Master SOP for updates" in `/editor` | Reads the Master SOP from WorkDrive, compares it with the knowledge base using Claude and leaves **suggestions** only. New entries stay hidden until a lead accepts them. |
+| Nightly refresh (optional) | `PUT /api/admin/item` with `mode: "refresh"` | Updates untouched entries. For human-edited entries it stores a **suggestion** that a lead accepts or rejects in the editor. |
 | Claude on request | `PUT /api/admin/item` with `mode: "human"` | Direct change you asked for. |
 
 Every write needs the version the writer last read; a stale save is rejected (409) instead of overwriting. Every change is logged with before/after text and can be restored from the editor.
@@ -40,6 +41,8 @@ Every write needs the version the writer last read; a stale save is rejected (40
 | `ANTHROPIC_MODEL` | No | Claude model id, e.g. `claude-sonnet-5-5`. |
 | `EDITOR_PASSWORD` | For `/editor` | Shared password for team leads. Changing it signs everyone out. |
 | `ADMIN_API_KEY` | For the nightly refresh | Bearer key for `/api/admin/*`. |
+| `ZOHO_CLIENT_ID`, `ZOHO_CLIENT_SECRET` | For the SOP check | Zoho API Console → Server-based Application. Redirect URI: `APP_URL/api/editor/zoho/callback`. A lead then clicks **Connect WorkDrive** once. |
+| `APP_URL` | For the SOP check | `https://customerservice2.vercel.app` |
 | `AWS_ROLE_ARN`, `AWS_REGION`, `DYNAMODB_TABLE_*` | Yes | Added automatically by the Vercel DynamoDB integration. |
 
 ## Run locally

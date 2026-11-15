@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { STATUSES, score, type SopEntry, type Status } from "@/lib/kb";
 import { StatusBadge } from "./ui";
 
-type Item = { id: string; data: SopEntry; version: number; updatedAt: string; updatedBy: string; humanEdited: boolean;
+type Item = { id: string; data: SopEntry; version: number; updatedAt: string; updatedBy: string; humanEdited: boolean; proposedNew?: boolean;
   suggestion?: { data: SopEntry; reason: string; by: string; at: string } };
 type Fb = { key: string; at: string; kind: string; subject: string; answer?: string; note?: string; name?: string; status: string; resolvedBy?: string };
 type Log = { at: string; collection: string; id: string; action: string; by: string; before?: SopEntry; after?: SopEntry; note?: string };
@@ -15,7 +15,8 @@ const toDraft = (e?: Partial<SopEntry>): Draft => ({
   escalate: e?.escalate ?? "", source: e?.source ?? "", status: (e?.status as Status) ?? "verified", order: e?.order ?? 500,
 });
 const ACTIONS: Record<string, string> = { create: "Created", update: "Edited", suggest: "Nightly refresh suggested a change",
-  "accept-suggestion": "Accepted suggestion", "reject-suggestion": "Rejected suggestion", seed: "Initial import" };
+  "accept-suggestion": "Accepted suggestion", "reject-suggestion": "Rejected suggestion", seed: "Initial import",
+  "suggest-new": "SOP check suggested a new entry" };
 
 async function api<T>(url: string, init?: RequestInit): Promise<{ ok: boolean; status: number; data: T }> {
   const r = await fetch(url, { ...init, headers: { "content-type": "application/json", ...(init?.headers ?? {}) } });
@@ -96,8 +97,10 @@ function Entries({ items, me, reload }: { items: Item[]; me: string; reload: () 
   const [q, setQ] = useState(""); const [filter, setFilter] = useState<"all" | "review" | "retired">("all");
   const [sel, setSel] = useState<Item | "new" | null>(null);
   const list = useMemo(() => {
-    let l = items.filter((i) => filter === "retired" ? i.data.status === "retired" : i.data.status !== "retired");
-    if (filter === "review") l = l.filter((i) => i.suggestion || ["needs_review", "gap", "draft", "outdated"].includes(i.data.status));
+    const isNewProposal = (i: Item) => i.data.status === "retired" && !!i.suggestion && !!i.proposedNew;
+    let l = filter === "review"
+      ? items.filter((i) => i.suggestion || (i.data.status !== "retired" && ["needs_review", "gap", "draft", "outdated"].includes(i.data.status)))
+      : items.filter((i) => !isNewProposal(i) && (filter === "retired" ? i.data.status === "retired" : i.data.status !== "retired"));
     if (q.trim()) l = l.map((i) => [score(i.data, q), i] as const).filter((x) => x[0] > 0).sort((a, b) => b[0] - a[0]).map((x) => x[1]);
     else l = [...l].sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
     return l;
@@ -110,6 +113,7 @@ function Entries({ items, me, reload }: { items: Item[]; me: string; reload: () 
   }
   return (
     <div style={{ display: "grid", gap: 12, paddingTop: 12 }}>
+      <SopCheck onChecked={async () => { await reload(); setFilter("review"); }} />
       <div className="row" style={{ justifyContent: "space-between" }}>
         <div className="row">
           {([["all", "Active"], ["review", "Needs attention"], ["retired", "Retired"]] as const).map(([k, l]) =>
@@ -124,7 +128,7 @@ function Entries({ items, me, reload }: { items: Item[]; me: string; reload: () 
           <tbody>{list.map((i) => (
             <tr key={i.id} onClick={() => setSel(i)} style={{ cursor: "pointer" }}>
               <td><b>{i.data.title}</b><br /><span className="catlabel">{i.data.cat} · {i.id}</span>
-                {i.suggestion && <div><span className="badge b-info">Suggested update waiting</span></div>}</td>
+                {i.suggestion && <div><span className="badge b-info">{i.proposedNew && i.data.status === "retired" ? "Suggested new entry" : "Suggested update waiting"}</span></div>}</td>
               <td><StatusBadge status={i.data.status} /></td>
               <td className="small muted">{i.updatedBy || "—"}<br />{fmt(i.updatedAt)}</td>
             </tr>))}
@@ -168,14 +172,16 @@ function EntryForm({ item, me, cats, onDone, onBack }: { item: Item | null; me: 
       </div>
       {sug && (
         <div className="card" style={{ borderColor: "var(--accent)" }}>
-          <div className="row" style={{ justifyContent: "space-between" }}><h3>Suggested update from {sug.by}</h3><span className="small muted">{fmt(sug.at)}</span></div>
+          <div className="row" style={{ justifyContent: "space-between" }}><h3>{item?.proposedNew && item.data.status === "retired" ? "Suggested new entry" : "Suggested update"} from {sug.by}</h3><span className="small muted">{fmt(sug.at)}</span></div>
           <p className="small" style={{ margin: 0 }}><b>Why:</b> {sug.reason}</p>
           <div className="split">
-            <div style={{ minWidth: 0 }}><div className="lbl">Current</div><ul className="steps small">{item!.data.body.map((l, i) => <li key={i}>{l}</li>)}</ul></div>
+            <div style={{ minWidth: 0 }}><div className="lbl">Current</div>{item?.proposedNew && item.data.status === "retired"
+              ? <div className="small muted">Not in the Answer Desk yet. Accepting adds it for agents.</div>
+              : <ul className="steps small">{item!.data.body.map((l, i) => <li key={i}>{l}</li>)}</ul>}</div>
             <div style={{ minWidth: 0 }}><div className="lbl">Suggested</div><ul className="steps small">{sug.data.body?.map((l, i) => <li key={i}>{l}</li>)}</ul></div>
           </div>
           <div className="row"><button className="primary" type="button" disabled={busy} onClick={() => resolve(true)}>Accept suggestion</button>
-            <button type="button" disabled={busy} onClick={() => resolve(false)}>Keep current version</button></div>
+            <button type="button" disabled={busy} onClick={() => resolve(false)}>{item?.proposedNew && item.data.status === "retired" ? "Don't add" : "Keep current version"}</button></div>
         </div>
       )}
       <div className="card">
@@ -244,6 +250,66 @@ function History({ id, onRestore }: { id?: string; onRestore?: (e: SopEntry) => 
             </tr>))}</tbody>
         </table></div>)}
       {onRestore && <p className="small muted" style={{ margin: 0 }}>Loading an old version fills the form; nothing changes until you click Save.</p>}
+    </div>
+  );
+}
+
+type CheckStatus = { configured: boolean; connected: boolean; connectedBy?: string; connectedAt?: string;
+  file?: { name: string; modified: string } | null; fileError?: string;
+  lastCheck?: { at: string; by: string; fileModified: string; summary: string; suggested: number; newEntries: number } | null };
+const ZOHO_MSG: Record<string, string> = {
+  connected: "WorkDrive connected. You can now check the Master SOP.", denied: "WorkDrive access wasn't allowed.",
+  failed: "Couldn't connect WorkDrive. Try again.", signin: "Sign in, then click Connect WorkDrive again.",
+  "not-configured": "WorkDrive connection isn't set up in Vercel yet (ZOHO_CLIENT_ID / ZOHO_CLIENT_SECRET).",
+};
+
+function SopCheck({ onChecked }: { onChecked: () => Promise<void> }) {
+  const [st, setSt] = useState<CheckStatus | null>(null);
+  const [busy, setBusy] = useState(false); const [err, setErr] = useState(""); const [note, setNote] = useState("");
+  const load = useCallback(async () => { const r = await api<CheckStatus>("/api/editor/sop-check"); if (r.ok) setSt(r.data); }, []);
+  useEffect(() => {
+    load();
+    const z = new URLSearchParams(location.search).get("zoho");
+    if (z) { setNote(ZOHO_MSG[z] ?? ""); history.replaceState(null, "", location.pathname + location.hash); }
+  }, [load]);
+  async function run() {
+    setBusy(true); setErr("");
+    const r = await api<CheckStatus["lastCheck"] & { error?: string }>("/api/editor/sop-check", { method: "POST" });
+    setBusy(false);
+    if (!r.ok) { setErr(r.data?.error || "The check didn't finish. Try again in a minute."); return; }
+    await load(); await onChecked();
+  }
+  if (!st) return null;
+  const lc = st.lastCheck;
+  const changedSince = !!(lc && st.file?.modified && st.file.modified > (lc.fileModified || ""));
+  return (
+    <div className="card">
+      <div className="row" style={{ justifyContent: "space-between" }}>
+        <h3>Master SOP check</h3>
+        {st.connected && <span className="small muted">WorkDrive connected by {st.connectedBy}</span>}
+      </div>
+      {note && <div className="notice">{note}</div>}
+      {!st.configured ? <div className="notice">WorkDrive connection isn&apos;t set up yet. Ask Mabeline to add the Zoho settings in Vercel.</div>
+      : !st.connected ? (
+        <>
+          <p className="small" style={{ margin: 0 }}>Connect WorkDrive once so the editor can read the Master SOP. Use a Zoho account that can open the SOP file.</p>
+          <div className="row"><a className="primary" href="/api/editor/zoho/connect" style={{ padding: "8px 14px", borderRadius: 8, background: "var(--accent)", color: "var(--accent-ink)", textDecoration: "none", fontWeight: 500 }}>Connect WorkDrive</a></div>
+        </>
+      ) : (
+        <>
+          <p className="small" style={{ margin: 0 }}>
+            {st.file ? <>SOP last changed <b>{fmt(st.file.modified)}</b>. </> : st.fileError ? <span className="muted">{st.fileError} </span> : null}
+            {lc ? <>Last checked <b>{fmt(lc.at)}</b> by {lc.by}.</> : "Not checked yet."}
+            {changedSince && <> <span className="badge b-warn">Changed since last check</span></>}
+          </p>
+          {lc && <p className="small muted" style={{ margin: 0 }}>{lc.summary} {lc.suggested || lc.newEntries ? `(${lc.suggested} updates, ${lc.newEntries} new entries suggested)` : ""}</p>}
+          <div className="row">
+            <button className="primary" type="button" disabled={busy} onClick={run}>{busy ? "Checking the SOP… (up to 2 minutes)" : "Check Master SOP for updates"}</button>
+            <span className="small muted">Nothing changes for agents until you accept a suggestion.</span>
+          </div>
+        </>
+      )}
+      {err && <div className="gap">{err}</div>}
     </div>
   );
 }
