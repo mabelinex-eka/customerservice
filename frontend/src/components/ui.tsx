@@ -4,7 +4,7 @@ import type { SopEntry, Status } from "@/lib/kb";
 
 const STATUS: Record<Status, [string, string]> = {
   verified: ["b-ok", "SOP"], draft: ["b-warn", "Draft"], gap: ["b-bad", "Not in SOP yet"],
-  needs_review: ["b-warn", "Needs review"], outdated: ["b-bad", "Outdated"],
+  needs_review: ["b-warn", "Needs review"], outdated: ["b-bad", "Outdated"], retired: ["b-bad", "Retired"],
 };
 export function StatusBadge({ status }: { status: Status }) {
   const [c, l] = STATUS[status] ?? STATUS.verified;
@@ -51,23 +51,40 @@ export function Thinking({ text }: { text: string }) {
   return <div className="card"><div className="thinking"><span className="dot" />{text}</div></div>;
 }
 
-/** "Wrong or outdated" — builds a note the agent pastes into the SG CS Chat for their lead. */
+/** "Wrong or outdated" — sends a flag to the editors' review list. */
 export function FlagBox({ subject, answer }: { subject: string; answer?: string }) {
+  const { toast } = useDesk();
   const [open, setOpen] = useState(false);
   const [note, setNote] = useState("");
+  const [name, setName] = useState("");
+  const [state, setState] = useState<"idle" | "sending" | "sent" | "failed">("idle");
+  const fid = "flag-" + subject.replace(/[^a-z0-9]/gi, "").slice(0, 40);
+  async function send() {
+    setState("sending");
+    try {
+      const r = await fetch("/api/feedback", { method: "POST", headers: { "content-type": "application/json" },
+        body: JSON.stringify({ kind: "flag", subject, answer, note, name }) });
+      if (!r.ok) throw new Error();
+      setState("sent"); toast("Sent to your team lead");
+    } catch { setState("failed"); }
+  }
   const text = `[CS Answer Desk – flagged]\nQuestion/entry: ${subject}\n${answer ? `Answer given: ${answer}\n` : ""}What's wrong: ${note || "(add details)"}`;
   return (
     <div style={{ display: "grid", gap: 8 }}>
       <div className="row">
         <button type="button" className="ghost" onClick={() => setOpen(!open)}>Report wrong or outdated</button>
       </div>
-      {open && (
+      {open && state !== "sent" && (
         <div style={{ display: "grid", gap: 8 }}>
-          <label className="lbl" htmlFor={`flag-${subject}`}>What&apos;s wrong, and what should it say?</label>
-          <textarea id={`flag-${subject}`} value={note} onChange={(e) => setNote(e.target.value)} />
-          <CopyBlock label="Paste this in the SG CS Chat for your team lead" text={text} />
+          <label className="lbl" htmlFor={fid}>What&apos;s wrong, and what should it say?</label>
+          <textarea id={fid} value={note} maxLength={2000} onChange={(e) => setNote(e.target.value)} />
+          <label className="lbl" htmlFor={fid + "-name"}>Your name (optional)</label>
+          <input type="text" id={fid + "-name"} value={name} maxLength={60} onChange={(e) => setName(e.target.value)} />
+          <div className="row"><button className="primary" type="button" disabled={state === "sending" || !note.trim()} onClick={send}>Send to team lead</button></div>
+          {state === "failed" && <CopyBlock label="Couldn't send. Paste this in the SG CS Chat instead" text={text} />}
         </div>
       )}
+      {state === "sent" && <div className="notice">Thanks — your team lead will review it.</div>}
     </div>
   );
 }

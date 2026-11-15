@@ -11,6 +11,9 @@
     "start": "next start"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.1158.0",
+    "@aws-sdk/lib-dynamodb": "^3.1158.0",
+    "@vercel/oidc-aws-credentials-provider": "^3.3.16",
     "next": "15.5.27",
     "react": "19.1.10",
     "react-dom": "19.1.10",

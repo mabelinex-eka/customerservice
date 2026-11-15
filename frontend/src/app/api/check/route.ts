@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { kb, kbText } from "@/lib/kb";
+import { kbText } from "@/lib/kb";
+import { loadKB } from "@/lib/db";
 import { askClaudeJson, ClaudeError, cleanInput } from "@/lib/claude";
 
 export const runtime = "nodejs";
@@ -16,6 +17,7 @@ export async function POST(req: Request) {
   const draft = cleanInput(body.draft), customer = cleanInput(body.customer);
   if (!draft) return NextResponse.json({ error: "Paste your draft reply first." }, { status: 400 });
   try {
+    const kb = await loadKB();
     const r = await askClaudeJson<Record<string, unknown>>(SYSTEM,
       `SOP ENTRIES:\n${kbText(kb.sop)}\n\nCUSTOMER MESSAGE:\n${customer || "(not provided)"}\n\nAGENT'S DRAFT:\n${draft}`);
     const ids = new Set(kb.sop.map((s) => s.id));

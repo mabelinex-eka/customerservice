@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { kb, kbText } from "@/lib/kb";
+import { kbText } from "@/lib/kb";
+import { loadKB } from "@/lib/db";
 import { askClaudeJson, ClaudeError, cleanInput } from "@/lib/claude";
 
 export const runtime = "nodejs";
@@ -20,6 +21,7 @@ export async function POST(req: Request) {
   const q = cleanInput((body as { question?: unknown }).question);
   if (!q) return NextResponse.json({ error: "Type a question first." }, { status: 400 });
   try {
+    const kb = await loadKB();
     const r = await askClaudeJson<Record<string, unknown>>(SYSTEM, `SOP ENTRIES:\n${kbText(kb.sop)}\n\nAGENT'S QUESTION:\n${q}`);
     const ids = new Set(kb.sop.map((s) => s.id));
     r.refs = Array.isArray(r.refs) ? (r.refs as string[]).filter((x) => ids.has(x)) : [];

@@ -3,6 +3,8 @@ import { NextResponse, type NextRequest } from "next/server";
 // Password-protects the whole app with HTTP Basic auth (any username, password = APP_PASSWORD).
 // The SOP is internal, so the app refuses to serve anything until APP_PASSWORD is set.
 export function middleware(req: NextRequest) {
+  // The admin API (nightly refresh) checks its own Bearer key in the route.
+  if (req.nextUrl.pathname.startsWith("/api/admin/")) return NextResponse.next();
   const pass = process.env.APP_PASSWORD;
   if (!pass) {
     return new NextResponse("CS Answer Desk is locked: set the APP_PASSWORD environment variable.", { status: 503 });

@@ -60,7 +60,7 @@ export default function AnswerDesk({ kb }: { kb: KB }) {
         {view === "checker" && <Checker />}
         {view === "checklist" && <Checklist lists={kb.checklist} />}
         {view === "quiz" && <Quiz quiz={kb.quiz} />}
-        <div className="foot">Internal use only. Sources: {(kb.meta.sources ?? []).join(" · ")}. If an answer looks wrong, report it and check with your team lead before replying.</div>
+        <div className="foot">Internal use only. Sources: {(kb.meta.sources ?? []).join(" · ")}. If an answer looks wrong, report it and check with your team lead before replying. Team leads: <a href="/editor">edit the knowledge base</a>.</div>
       </main>
       {toastMsg && <div className="toast" role="status">{toastMsg}</div>}
     </DeskContext.Provider>
